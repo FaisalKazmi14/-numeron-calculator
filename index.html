@@ -409,6 +409,8 @@ canvas{display:block;width:100%;height:100%}
     </div>
 
     <button class="install" id="installBtn">⬇ Install App</button>
+    <button class="install secondary" id="downloadBtn">Download app file</button>
+    <div class="small" id="installHint">Install is available on supported browsers. Other devices can download the app file or use the browser menu to add it to the home screen.</div>
     <button class="install secondary" id="copyBtn">Copy current expression</button>
 
     <div class="card ai-box">
@@ -647,9 +649,59 @@ const expressionEl = document.getElementById('expression');
 const resultEl = document.getElementById('result');
 const subtitleEl = document.getElementById('subtitle');
 const statusTextEl = document.getElementById('statusText');
-const aiAssist</main>
-</div>
-<script>ion = localStorage.getItem(STORAGE_KEYS.expression) || '';
+const aiAssistantEl = document.getElementById('aiAssistant');
+const themeMeta = document.getElementById('themeMeta');
+const historyListEl = document.getElementById('historyList');
+
+const STORAGE_KEYS = {
+  history: 'numeron_history_v2',
+  theme: 'numeron_theme_v2',
+  expression: 'numeron_expression_v2'
+};
+
+function setStatus(text){ statusTextEl.textContent = text; }
+function escapeHtml(str){
+  return String(str)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;')
+    .replaceAll("'",'&#39;');
+}
+function safeLocalHistory(){
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.history) || '[]'); }
+  catch { return []; }
+}
+function safeSaveHistory(history){
+  localStorage.setItem(STORAGE_KEYS.history, JSON.stringify(history));
+}
+function formatNumber(n){
+  if (n === null || n === undefined) return '0';
+  if (typeof n === 'string') return n;
+  if (!Number.isFinite(n)) return String(n);
+  const abs = Math.abs(n);
+  if ((abs !== 0 && abs < 1e-8) || abs >= 1e12) return Number(n).toExponential(8).replace(/0+e/, 'e').replace(/\.e/, 'e');
+  return Number(n).toLocaleString(undefined, { maximumFractionDigits: 12 });
+}
+function parseNumbers(input){
+  return input.split(/[\s,]+/).map(v => Number(v)).filter(v => Number.isFinite(v));
+}
+function medianOf(nums){
+  const s = [...nums].sort((a,b)=>a-b);
+  const mid = Math.floor(s.length/2);
+  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+}
+function varianceOf(nums){
+  const mean = nums.reduce((a,b)=>a+b,0) / nums.length;
+  return nums.reduce((a,b)=>a + (b - mean) ** 2, 0) / nums.length;
+}
+function getCurrentExpressionForCopy(){
+  return calc.expression || '';
+}
+
+class Calculator{
+  constructor(){
+    this.expression = localStorage.getItem(STORAGE_KEYS.expression) || '';
     this.history = safeLocalHistory();
     this.render();
     this.renderHistory();
@@ -721,34 +773,7 @@ const aiAssist</main>
   }
 
   pretty(value){
-    if (typeof value === 'number')<div id="installHelpModal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:300;background:rgba(2,6,23,.72);backdrop-filter:blur(18px);padding:18px;">
-  <div style="width:min(560px,100%);border-radius:28px;padding:22px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-      <div>
-        <div class="card-title">Install Numeron</div>
-        <div class="card-sub" id="installHelpTitle">Choose the right install method for your device.</div>
-      </div>
-      <button class="install secondary" id="closeInstallHelp" style="width:auto;padding:10px 14px;">Close</button>
-    </div>
-    <div class="card" style="margin-top:14px;">
-      <div class="card-title">Android / Chrome</div>
-      <div class="card-sub">Tap the browser menu and choose Install app or Add to Home screen.</div>
-    </div>
-    <div class="card" style="margin-top:10px;">
-      <div class="card-title">iPhone / iPad</div>
-      <div class="card-sub">Tap Share, then choose Add to Home Screen. Safari works best for iOS installation.</div>
-    </div>
-    <div class="card" style="margin-top:10px;">
-      <div class="card-title">Desktop</div>
-      <div class="card-sub">Use the browser install icon in the address bar, or download the standalone app file.</div>
-    </div>
-    <div class="history-actions" style="margin-top:14px;">
-      <button class="install" id="modalDownloadBtn" style="width:auto;">Download app file</button>
-      <button class="install secondary" id="modalCopyStepsBtn" style="width:auto;">Copy steps</button>
-    </div>
-  </div>
-</div>
-</body> formatNumber(value);
+    if (typeof value === 'number') return formatNumber(value);
     if (typeof value === 'bigint') return value.toString();
     if (value && typeof value === 'object' && 're' in value && 'im' in value){
       const re = formatNumber(value.re);
@@ -1154,23 +1179,104 @@ function bindKeyboard(){
 
 function bindInstall(){
   let deferredPrompt = null;
+  const installBtn = document.getElementById('installBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const modal = document.getElementById('installHelpModal');
+  const closeBtn = document.getElementById('closeInstallHelp');
+  const modalDownloadBtn = document.getElementById('modalDownloadBtn');
+  const modalCopyStepsBtn = document.getElementById('modalCopyStepsBtn');
+  const hint = document.getElementById('installHint');
+  const helpTitle = document.getElementById('installHelpTitle');
+
+  const deviceHelp = () => {
+    const ua = navigator.userAgent || '';
+    if (/iphone|ipad|ipod/i.test(ua)) {
+      return 'On iPhone and iPad, use Safari → Share → Add to Home Screen.';
+    }
+    if (/android/i.test(ua)) {
+      return 'On Android, use Chrome menu → Install app or Add to Home screen.';
+    }
+    if (/macintosh|windows|linux/i.test(ua)) {
+      return 'On desktop, use the browser install icon or menu item to install this app.';
+    }
+    return 'Use your browser menu to add this app to the home screen or install it.';
+  };
+
+  const openHelp = () => {
+    helpTitle.textContent = deviceHelp();
+    modal.style.display = 'flex';
+  };
+
+  const closeHelp = () => {
+    modal.style.display = 'none';
+  };
+
+  const downloadHtml = () => {
+    const html = '<!DOCTYPE html>
+' + document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'numeron-premium.html';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setStatus('Download started');
+  };
+
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    document.getElementById('installBtn').style.display = 'block';
+    hint.textContent = 'Install is ready on this browser.';
+    installBtn.textContent = '⬇ Install App';
   });
-  document.getElementById('installBtn').addEventListener('click', async () => {
-    try{
-      if (deferredPrompt){
-        await deferredPrompt.prompt();
+
+  window.addEventListener('appinstalled', () => {
+    hint.textContent = 'App installed successfully.';
+    setStatus('App installed');
+  });
+
+  installBtn.addEventListener('click', async () => {
+    try {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
         deferredPrompt = null;
-        setStatus('Install prompt shown');
-      }else{
-        alert('Install is available when served over HTTPS and supported by the browser.');
+        if (choice && choice.outcome === 'accepted') {
+          hint.textContent = 'Installation accepted.';
+          setStatus('Installed');
+        } else {
+          hint.textContent = 'You can install it later from the browser menu.';
+          setStatus('Install dismissed');
+        }
+      } else {
+        openHelp();
       }
-    }catch(err){
+    } catch (err) {
       console.warn(err);
-      alert('Install prompt unavailable in this environment.');
+      openHelp();
+    }
+  });
+
+  downloadBtn.addEventListener('click', downloadHtml);
+  modalDownloadBtn.addEventListener('click', downloadHtml);
+  closeBtn.addEventListener('click', closeHelp);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeHelp();
+  });
+  modalCopyStepsBtn.addEventListener('click', async () => {
+    const text = `${deviceHelp()}
+
+Desktop: use the install icon or browser menu.
+Android: Chrome menu → Install app.
+iPhone/iPad: Share → Add to Home Screen.`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setStatus('Install steps copied');
+    } catch {
+      setStatus('Clipboard unavailable');
     }
   });
 }
@@ -1366,5 +1472,33 @@ Folder structure:
 END PWA FILES
 ========================================================
 -->
+<div id="installHelpModal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:300;background:rgba(2,6,23,.72);backdrop-filter:blur(18px);padding:18px;">
+  <div style="width:min(560px,100%);border-radius:28px;padding:22px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
+      <div>
+        <div class="card-title">Install Numeron</div>
+        <div class="card-sub" id="installHelpTitle">Choose the right install method for your device.</div>
+      </div>
+      <button class="install secondary" id="closeInstallHelp" style="width:auto;padding:10px 14px;">Close</button>
+    </div>
+    <div class="card" style="margin-top:14px;">
+      <div class="card-title">Android / Chrome</div>
+      <div class="card-sub">Tap the browser menu and choose Install app or Add to Home screen.</div>
+    </div>
+    <div class="card" style="margin-top:10px;">
+      <div class="card-title">iPhone / iPad</div>
+      <div class="card-sub">Tap Share, then choose Add to Home Screen. Safari works best for iOS installation.</div>
+    </div>
+    <div class="card" style="margin-top:10px;">
+      <div class="card-title">Desktop</div>
+      <div class="card-sub">Use the browser install icon in the address bar, or download the standalone app file.</div>
+    </div>
+    <div class="history-actions" style="margin-top:14px;">
+      <button class="install" id="modalDownloadBtn" style="width:auto;">Download app file</button>
+      <button class="install secondary" id="modalCopyStepsBtn" style="width:auto;">Copy steps</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
+
