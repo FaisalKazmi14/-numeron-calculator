@@ -1,5 +1,5 @@
-﻿const CACHE = 'numeron-premium-v1';
-const ASSETS = ['./', './index.html', './manifest.json', './logo.png'];
+const CACHE = 'numeron-premium-v1';
+const ASSETS = ['./', './index.html', './manifest.json', './logo.svg'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));

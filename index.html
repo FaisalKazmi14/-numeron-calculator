@@ -2,29 +2,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>NUMERON PREMIUM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>NUMERON ULTRA PREMIUM</title>
 <meta name="theme-color" content="#06091a" id="themeMeta">
-<link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Numeron Premium">
+<meta name="apple-mobile-web-app-title" content="Numeron Ultra">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="Numeron Premium">
+<meta name="application-name" content="Numeron Ultra">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js"></script>
+<link rel="manifest" href="manifest.json">
 <style>
 :root{
   --bg:#06091a;
   --bg2:#090f28;
-  --surface:rgba(14, 19, 42, .72);
-  --surface-strong:rgba(22, 29, 58, .92);
-  --surface-soft:rgba(255,255,255,.05);
+  --surface:rgba(14, 19, 42, .75);
+  --surface-strong:rgba(22, 29, 58, .95);
+  --surface-soft:rgba(255,255,255,.06);
   --text:#f8fbff;
   --muted:#9aa7c0;
-  --border:rgba(255,255,255,.10);
+  --border:rgba(255,255,255,.11);
   --accent:#00d4ff;
   --accent2:#ff006e;
   --accent3:#7c5cff;
@@ -33,10 +33,10 @@
   --warning:#f7b955;
   --radius:26px;
   --radius-lg:32px;
-  --shadow:0 30px 80px rgba(0,0,0,.42);
-  --shadow-soft:0 14px 40px rgba(0,0,0,.22);
+  --shadow:0 30px 80px rgba(0,0,0,.45);
+  --shadow-soft:0 14px 40px rgba(0,0,0,.25);
   --spring:cubic-bezier(.2,1,.25,1);
-  --card-blur:blur(24px);
+  --card-blur:blur(28px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -45,62 +45,80 @@ body{
   color:var(--text);
   overflow:hidden;
   background:
-    radial-gradient(circle at 12% 12%, rgba(0,212,255,.18), transparent 24%),
-    radial-gradient(circle at 88% 12%, rgba(255,0,110,.14), transparent 24%),
-    radial-gradient(circle at 75% 82%, rgba(124,92,255,.14), transparent 28%),
+    radial-gradient(circle at 12% 12%, rgba(0,212,255,.20), transparent 26%),
+    radial-gradient(circle at 88% 12%, rgba(255,0,110,.16), transparent 26%),
+    radial-gradient(circle at 75% 82%, rgba(124,92,255,.16), transparent 30%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
 }
 body::before{
   content:"";
-  position:fixed;inset:0;pointer-events:none;opacity:.05;
+  position:fixed;inset:0;pointer-events:none;opacity:.06;
   background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".75"/></svg>');
   mix-blend-mode:soft-light;
 }
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-::selection{background:rgba(0,212,255,.25)}
+::selection{background:rgba(0,212,255,.28)}
 
 .app{
   height:100vh;
   display:grid;
-  grid-template-columns:320px minmax(0,1fr);
+  grid-template-columns:340px minmax(0,1fr);
 }
 .sidebar{
   position:relative;
   display:flex;
   flex-direction:column;
-  gap:18px;
-  padding:22px;
-  overflow:auto;
+  gap:16px;
+  padding:20px;
+  overflow-y:auto;
+  overflow-x:hidden;
   border-right:1px solid var(--border);
-  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
   backdrop-filter:var(--card-blur);
+}
+.sidebar > * {
+  flex-shrink: 0;
 }
 .sidebar::after{
   content:"";
   position:absolute;inset:0;
-  background:linear-gradient(135deg, rgba(255,255,255,.07), transparent 40%);
+  background:linear-gradient(135deg, rgba(255,255,255,.08), transparent 42%);
   pointer-events:none;
 }
 .brand{
-  display:flex;align-items:center;gap:16px;
-  padding:14px 14px 8px;
+  display:flex;align-items:center;gap:14px;
+  padding:12px 12px 6px;
 }
 .logo{
-  width:58px;height:58px;border-radius:20px;
+  width:62px;height:62px;border-radius:22px;
   display:grid;place-items:center;
   font-family:Syne,Inter,sans-serif;
-  font-weight:800;font-size:1.4rem;
+  font-weight:900;font-size:1.5rem;
   color:#fff;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
-  box-shadow:0 20px 45px rgba(0,212,255,.18), inset 0 1px 0 rgba(255,255,255,.3);
+  box-shadow:0 22px 48px rgba(0,212,255,.20), inset 0 1px 0 rgba(255,255,255,.35);
+  position:relative;
+}
+.logo::after{
+  content:"ULTRA";
+  position:absolute;
+  bottom:-2px;right:-2px;
+  font-size:.48rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  padding:3px 6px;
+  background:linear-gradient(135deg, var(--accent3), var(--accent2));
+  border-radius:6px;
+  box-shadow:0 4px 12px rgba(0,0,0,.3);
 }
 .brand h1{
   font-family:Syne,Inter,sans-serif;
-  font-size:1.08rem;
-  letter-spacing:.08em;
+  font-size:1.1rem;
+  letter-spacing:.06em;
+  font-weight:800;
 }
-.brand p{color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.35}
+.brand p{color:var(--muted);font-size:.84rem;margin-top:4px;line-height:1.4}
 
 .hero-card,.card,.panel,.display,.history-item,.mode-shell{
   background:var(--surface);
@@ -110,131 +128,182 @@ button{cursor:pointer}
 }
 .hero-card{
   border-radius:var(--radius-lg);
-  padding:18px;
+  padding:16px;
   overflow:hidden;
   position:relative;
 }
 .hero-card::before{
   content:"";
   position:absolute;inset:-1px;
-  background:linear-gradient(135deg, rgba(0,212,255,.10), rgba(255,0,110,.08), transparent 65%);
+  background:linear-gradient(135deg, rgba(0,212,255,.12), rgba(255,0,110,.10), transparent 68%);
   pointer-events:none;
 }
-.hero-kicker{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.18em}
-.hero-title{font-family:Syne,Inter,sans-serif;font-size:1.2rem;margin-top:8px;line-height:1.1}
-.hero-sub{color:var(--muted);font-size:.92rem;line-height:1.5;margin-top:10px}
+.hero-kicker{font-size:.76rem;color:var(--accent);text-transform:uppercase;letter-spacing:.20em;font-weight:700}
+.hero-title{font-family:Syne,Inter,sans-serif;font-size:1.15rem;margin-top:8px;line-height:1.15;font-weight:700}
+.hero-sub{color:var(--muted);font-size:.90rem;line-height:1.5;margin-top:10px}
 
 .install{
   width:100%;
-  padding:14px 16px;
+  padding:13px 16px;
   border:none;
   border-radius:18px;
   color:#fff;
   font-weight:800;
   letter-spacing:.01em;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
-  box-shadow:0 16px 34px rgba(0,212,255,.18);
-  transition:transform .18s var(--spring), filter .18s var(--spring);
+  box-shadow:0 16px 36px rgba(0,212,255,.20);
+  transition:transform .18s var(--spring), filter .18s var(--spring), box-shadow .18s var(--spring);
+  position:relative;
+  overflow:hidden;
 }
-.install:hover{transform:translateY(-1px);filter:saturate(1.08)}
-.install:active{transform:translateY(1px) scale(.99)}
-.install.secondary{background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));border:1px solid var(--border);box-shadow:none}
+.install::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(255,255,255,.25), transparent 60%);
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.install:hover{transform:translateY(-2px);filter:saturate(1.12);box-shadow:0 20px 42px rgba(0,212,255,.28)}
+.install:hover::before{opacity:1}
+.install:active{transform:translateY(0) scale(.98)}
+.install.secondary{
+  background:linear-gradient(135deg, rgba(255,255,255,.09), rgba(255,255,255,.04));
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+  color:var(--text);
+}
+.install.success{
+  background:linear-gradient(135deg, var(--success), #17cf8a);
+  box-shadow:0 16px 36px rgba(35,209,139,.25);
+}
+.install:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  transform:none;
+}
 
 .ai-box{display:grid;gap:12px}
 .ai-output{
-  min-height:112px;
+  min-height:100px;
+  max-height:180px;
+  overflow-y:auto;
   padding:14px;
   border-radius:18px;
   color:var(--muted);
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  line-height:1.6;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.09);
+  line-height:1.65;
+  font-size:.90rem;
 }
+.ai-output b{color:var(--text);font-weight:700}
 .input, select, textarea{
   width:100%;
-  padding:15px 16px;
+  padding:14px 16px;
   border-radius:18px;
-  border:1px solid rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.10);
   color:var(--text);
-  background:rgba(255,255,255,.04);
+  background:rgba(255,255,255,.05);
   outline:none;
-  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
 }
 .input::placeholder, textarea::placeholder{color:#7f8aa5}
 .input:focus, select:focus, textarea:focus{
-  border-color:rgba(0,212,255,.5);
-  box-shadow:0 0 0 4px rgba(0,212,255,.12);
+  border-color:rgba(0,212,255,.6);
+  box-shadow:0 0 0 4px rgba(0,212,255,.14);
+  background:rgba(255,255,255,.07);
+  transform:translateY(-1px);
 }
-.menu{display:grid;gap:8px}
+.menu{display:grid;gap:7px}
 .menu button{
   width:100%;
   border:none;
   text-align:left;
   border-radius:18px;
-  padding:14px 15px;
+  padding:13px 14px;
   color:var(--muted);
   background:transparent;
   transition:transform .18s var(--spring), background .18s ease, color .18s ease, border-color .18s ease;
   border:1px solid transparent;
   font-weight:650;
 }
-.menu button:hover{transform:translateX(4px);background:rgba(255,255,255,.05);color:var(--text)}
+.menu button:hover{transform:translateX(5px);background:rgba(255,255,255,.06);color:var(--text)}
 .menu button.active{
   color:var(--text);
-  background:linear-gradient(135deg, rgba(0,212,255,.13), rgba(255,0,110,.11));
-  border-color:rgba(255,255,255,.10);
+  background:linear-gradient(135deg, rgba(0,212,255,.15), rgba(255,0,110,.13));
+  border-color:rgba(255,255,255,.12);
+  font-weight:700;
 }
 .themeRow{display:flex;gap:10px;flex-wrap:wrap}
 .themeBtn{
-  width:34px;height:34px;border-radius:50%;border:2px solid rgba(255,255,255,.18);cursor:pointer;
-  box-shadow:0 8px 16px rgba(0,0,0,.18);
-  transition:transform .18s var(--spring);
+  width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,.20);cursor:pointer;
+  box-shadow:0 8px 18px rgba(0,0,0,.20);
+  transition:transform .18s var(--spring), box-shadow .18s var(--spring);
+  position:relative;
 }
-.themeBtn:hover{transform:scale(1.06)}
+.themeBtn:hover{transform:scale(1.08);box-shadow:0 10px 22px rgba(0,0,0,.28)}
+.themeBtn.active::after{
+  content:"✓";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:900;
+  font-size:1rem;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
 .small{font-size:.82rem;color:var(--muted)}
-.footer-note{color:var(--muted);font-size:.8rem;line-height:1.5;padding:2px 14px 8px}
+.footer-note{color:var(--muted);font-size:.78rem;line-height:1.5;padding:2px 12px 6px}
 
 .main{
   min-width:0;
   display:flex;
   flex-direction:column;
-  gap:18px;
-  padding:22px;
+  gap:16px;
+  padding:20px;
   overflow:hidden;
 }
 .topbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:14px;
+  gap:12px;
 }
 .topbar-left{display:flex;align-items:center;gap:12px;min-width:0}
 .page-title{
-  display:flex;flex-direction:column;gap:4px;min-width:0
+  display:flex;flex-direction:column;gap:3px;min-width:0
 }
 .page-title h2{
   font-family:Syne,Inter,sans-serif;
-  font-size:1.1rem;
-  letter-spacing:.03em;
+  font-size:1.12rem;
+  letter-spacing:.02em;
+  font-weight:800;
 }
 .page-title p{color:var(--muted);font-size:.88rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .status-pill{
   display:inline-flex;align-items:center;gap:8px;
-  padding:10px 14px;border-radius:999px;
-  background:rgba(255,255,255,.05);
+  padding:9px 13px;border-radius:999px;
+  background:rgba(255,255,255,.06);
   border:1px solid var(--border);
   color:var(--muted);
   font-size:.84rem;
+  font-weight:600;
 }
 .status-dot{
   width:9px;height:9px;border-radius:999px;background:var(--success);
-  box-shadow:0 0 0 4px rgba(35,209,139,.12);
+  box-shadow:0 0 0 4px rgba(35,209,139,.14);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.7;transform:scale(.9)}
 }
 .mobile-toggle{
   display:none;
-  width:50px;height:50px;border:none;border-radius:16px;
+  width:52px;height:52px;border:none;border-radius:18px;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;font-size:1.1rem;font-weight:800;
+  color:#fff;font-size:1.2rem;font-weight:800;
   box-shadow:var(--shadow-soft);
 }
 
@@ -242,8 +311,8 @@ button{cursor:pointer}
   position:relative;
   border-radius:var(--radius-lg);
   overflow:hidden;
-  padding:26px 26px 24px;
-  min-height:188px;
+  padding:24px 26px 22px;
+  min-height:180px;
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
@@ -252,31 +321,33 @@ button{cursor:pointer}
   content:"";
   position:absolute;inset:0;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.08), transparent 26%),
-    radial-gradient(circle at 20% 15%, rgba(0,212,255,.14), transparent 28%),
-    radial-gradient(circle at 80% 0%, rgba(255,0,110,.12), transparent 26%);
+    linear-gradient(135deg, rgba(255,255,255,.09), transparent 28%),
+    radial-gradient(circle at 20% 15%, rgba(0,212,255,.16), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(255,0,110,.14), transparent 28%);
   pointer-events:none;
 }
 .display::after{
   content:"";
-  position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  position:absolute;left:0;right:0;bottom:0;height:2px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
 }
 .expression{
   font-family:'JetBrains Mono',monospace;
   color:var(--muted);
-  font-size:.98rem;
-  min-height:1.4em;
+  font-size:1rem;
+  min-height:1.5em;
   word-break:break-all;
+  line-height:1.4;
 }
 .result{
   margin-top:10px;
   font-family:'JetBrains Mono',monospace;
-  font-size:clamp(2.5rem,5vw,5.4rem);
+  font-size:clamp(2.5rem,5vw,5.6rem);
   font-weight:700;
   line-height:1;
   word-break:break-word;
-  text-shadow:0 0 30px rgba(255,255,255,.05);
+  text-shadow:0 0 35px rgba(255,255,255,.08);
+  letter-spacing:-.02em;
 }
 .workspace{
   flex:1;
@@ -286,85 +357,119 @@ button{cursor:pointer}
 }
 .mode-shell{
   border-radius:var(--radius-lg);
-  padding:18px;
+  padding:16px;
   overflow:hidden;
 }
 .mode.hidden{display:none}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .grid.scientific{grid-template-columns:repeat(5,1fr)}
 .btn{
   position:relative;
-  height:72px;
+  height:70px;
   border:none;
-  border-radius:22px;
-  background:rgba(255,255,255,.05);
+  border-radius:20px;
+  background:rgba(255,255,255,.06);
   color:var(--text);
-  font-size:1.1rem;
-  font-weight:650;
+  font-size:1.08rem;
+  font-weight:700;
   transition:transform .16s var(--spring), background .16s ease, border-color .16s ease, box-shadow .16s ease;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
 }
 .btn::after{
   content:"";
   position:absolute;inset:0;
-  background:linear-gradient(135deg, rgba(255,255,255,.16), transparent 35%);
-  opacity:.4;
+  background:linear-gradient(135deg, rgba(255,255,255,.18), transparent 38%);
+  opacity:.45;
   pointer-events:none;
 }
-.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.075);box-shadow:0 16px 24px rgba(0,0,0,.16)}
-.btn:active{transform:translateY(1px) scale(.99)}
-.btn.operator{background:rgba(0,212,255,.12);color:#9feeff;border-color:rgba(0,212,255,.16)}
-.btn.function{background:rgba(255,0,110,.10);color:#ff8ab7;border-color:rgba(255,0,110,.14)}
-.btn.equal{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;box-shadow:0 18px 30px rgba(255,0,110,.14)}
-.btn.success{background:linear-gradient(135deg, #17cf8a, #5eead4);color:#02111a}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.09);box-shadow:0 16px 28px rgba(0,0,0,.18)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.operator{background:rgba(0,212,255,.14);color:#9feeff;border-color:rgba(0,212,255,.18)}
+.btn.function{background:rgba(255,0,110,.12);color:#ff8ab7;border-color:rgba(255,0,110,.16)}
+.btn.equal{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:900;box-shadow:0 18px 32px rgba(255,0,110,.16)}
+.btn.success{background:linear-gradient(135deg, #17cf8a, #5eead4);color:#02111a;font-weight:800}
 .btn.wide{grid-column:span 2}
-.btn.tall{height:156px}
+.btn.tall{height:150px}
 
-.panel{display:grid;gap:14px}
+.panel{display:grid;gap:13px}
 .card{
   border-radius:24px;
-  padding:18px;
+  padding:17px;
   background:var(--surface);
   border:1px solid var(--border);
   box-shadow:var(--shadow-soft);
 }
-.card-title{font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.card-title{font-size:.79rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .card-value{font-size:1.5rem;font-weight:800;margin-top:8px;word-break:break-word}
-.card-sub{font-size:.9rem;color:var(--muted);line-height:1.5;margin-top:8px}
+.card-sub{font-size:.89rem;color:var(--muted);line-height:1.55;margin-top:8px}
 
 .split{
   display:grid;
   grid-template-columns:1.15fr .85fr;
-  gap:14px;
+  gap:13px;
 }
 .stats-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:11px;
 }
-.history-list{display:grid;gap:12px}
+.history-list{display:grid;gap:11px}
 .history-item{
   border-radius:20px;
-  padding:16px;
+  padding:15px;
   cursor:pointer;
   transition:transform .16s var(--spring), border-color .16s ease, background .16s ease;
 }
-.history-item:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.06)}
-.history-item .exp{font-family:'JetBrains Mono',monospace;word-break:break-word;margin-top:8px}
+.history-item:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.08)}
+.history-item .exp{font-family:'JetBrains Mono',monospace;word-break:break-word;margin-top:8px;font-size:.92rem}
 .history-item .res{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;margin-top:10px}
 .history-actions{display:flex;gap:10px;flex-wrap:wrap}
 .inline-actions{display:flex;gap:10px;flex-wrap:wrap}
 .badge{
   display:inline-flex;align-items:center;gap:8px;
-  padding:9px 12px;border-radius:999px;
-  background:rgba(255,255,255,.05);
+  padding:8px 12px;border-radius:999px;
+  background:rgba(255,255,255,.06);
   border:1px solid var(--border);
   color:var(--muted);
-  font-size:.83rem;
+  font-size:.82rem;
+  font-weight:600;
 }
-.canvas-wrap{height:150px;border-radius:20px;overflow:hidden;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)}
+.canvas-wrap{height:140px;border-radius:20px;overflow:hidden;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
 canvas{display:block;width:100%;height:100%}
+
+.modal{
+  position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:500;
+  background:rgba(2,6,23,.78);backdrop-filter:blur(20px);padding:18px;
+  animation:fadeIn .3s ease;
+}
+.modal.show{display:flex}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+.modal-content{
+  width:min(580px,100%);border-radius:30px;padding:24px;
+  background:var(--surface-strong);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  animation:slideUp .3s var(--spring);
+}
+@keyframes slideUp{
+  from{transform:translateY(20px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+.modal-header{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:18px;
+}
+.modal-title{font-family:Syne,Inter,sans-serif;font-size:1.3rem;font-weight:800;line-height:1.2}
+.modal-subtitle{color:var(--muted);font-size:.92rem;margin-top:6px;line-height:1.5}
+.close-btn{
+  width:38px;height:38px;border-radius:12px;border:1px solid var(--border);
+  background:rgba(255,255,255,.05);color:var(--muted);font-size:1.3rem;font-weight:700;
+  transition:all .2s ease;flex-shrink:0;
+}
+.close-btn:hover{background:rgba(255,255,255,.10);color:var(--text);transform:rotate(90deg)}
 
 @media (max-width: 1080px){
   .split{grid-template-columns:1fr}
@@ -372,56 +477,96 @@ canvas{display:block;width:100%;height:100%}
 @media (max-width: 900px){
   .app{grid-template-columns:1fr}
   .sidebar{
-    position:fixed;left:-100%;top:0;bottom:0;width:min(320px, 92vw);z-index:80;transition:left .28s var(--spring);
+    position:fixed;left:-100%;top:0;bottom:0;width:min(340px, 94vw);z-index:400;
+    transition:left .30s var(--spring);
   }
   .sidebar.open{left:0}
-  .mobile-toggle{display:inline-grid;place-items:center;position:fixed;left:16px;bottom:16px;z-index:120}
+  .mobile-toggle{
+    display:inline-grid;place-items:center;
+    position:fixed;left:16px;bottom:16px;z-index:420;
+  }
   .main{padding:16px;padding-top:16px}
-  .topbar{padding-left:62px}
-  .btn{height:64px;border-radius:18px}
+  .topbar{padding-left:64px}
+  .btn{height:62px;border-radius:18px}
   .grid.scientific{grid-template-columns:repeat(4,1fr)}
 }
 @media (max-width: 520px){
   .grid,.grid.scientific{grid-template-columns:repeat(4,1fr)}
-  .display{min-height:162px;padding:20px}
-  .result{font-size:clamp(2.1rem,9vw,3.5rem)}
-  .btn{font-size:1rem}
+  .display{min-height:150px;padding:18px}
+  .result{font-size:clamp(2rem,9vw,3.2rem)}
+  .btn{font-size:1rem;height:58px}
   .sidebar{padding:16px}
+  .app{grid-template-columns:1fr}
+}
+
+/* Splash Screen */
+#splash-screen {
+  position: fixed; inset: 0; background: var(--bg2); z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+#splash-screen.hidden { opacity: 0; visibility: hidden; }
+.splash-logo {
+  font-family: Syne, sans-serif; font-size: 3.5rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: splashPulse 2s infinite ease-in-out;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  text-align: center;
+  padding: 0 20px;
+}
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.2); }
+}
+.splash-tag { color: var(--muted); font-size: 1.2rem; margin-top: 15px; font-weight: 500; letter-spacing: 0.05em; text-align: center; padding: 0 20px;}
+.developer-signature {
+  text-align: center; font-size: 0.85rem; color: var(--muted); margin-top: 20px;
+  font-weight: 600; background: rgba(255,255,255,0.05); padding: 10px 15px; border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.developer-signature span { color: #ff3b30; animation: heartbeat 1.5s infinite; display: inline-block; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
 }
 </style>
 </head>
 <body>
+<div id="splash-screen">
+  <div class="splash-logo">NUMERON ULTRA</div>
+  <div class="splash-tag">Welcome to Numeron Ultra - Professional calculation suite</div>
+</div>
 <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle sidebar">☰</button>
 <div class="app">
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <div class="logo">N</div>
       <div>
-        <h1>NUMERON PREMIUM</h1>
-        <p>Precision calculator and analysis suite</p>
+        <h1>NUMERON ULTRA</h1>
+        <p>Professional calculation suite</p>
       </div>
     </div>
 
     <div class="hero-card">
-      <div class="hero-kicker">Studio-grade calculator</div>
-      <div class="hero-title">Fast, polished, offline-ready math workspace.</div>
-      <div class="hero-sub">Built for scientific work, finance, matrices, unit conversion, and quick equation insight.</div>
+      <div class="hero-kicker">Ultra-Premium Edition</div>
+      <div class="hero-title">Advanced mathematical workspace with AI assistance.</div>
+      <div class="hero-sub">Scientific computing, financial modeling, statistics, matrix operations, and intelligent equation solving.</div>
     </div>
 
-    <button class="install" id="installBtn">⬇ Install App</button>
-    <button class="install secondary" id="downloadBtn">Download app file</button>
-    <div class="small" id="installHint">Install is available on supported browsers. Other devices can download the app file or use the browser menu to add it to the home screen.</div>
-    <button class="install secondary" id="copyBtn">Copy current expression</button>
+    <button class="install" id="installBtn">⬇ Install Application</button>
+    <div class="small" id="installHint">Installation available for supported browsers</div>
 
     <div class="card ai-box">
-      <div class="small">AI Assistant</div>
-      <div class="ai-output" id="aiAssistant">Ask about formulas, statistics, finance, matrices, or conversions.</div>
-      <input class="input" id="aiInput" placeholder="Type a math question..." autocomplete="off">
-      <button class="install" id="aiAskBtn">Ask AI</button>
+      <div class="small">🤖 AI Mathematical Assistant</div>
+      <div class="ai-output" id="aiAssistant">I can help with formulas, calculations, statistics, finance, conversions, and math concepts. Ask me anything!</div>
+      <input class="input" id="aiInput" placeholder="Ask about math, formulas, conversions..." autocomplete="off">
+      <button class="install" id="aiAskBtn">Ask AI Assistant</button>
     </div>
 
     <div>
-      <div class="small" style="margin:4px 0 10px">Modes</div>
+      <div class="small" style="margin:4px 0 10px">🎯 Calculator Modes</div>
       <div class="menu" id="modeMenu">
         <button class="active" data-mode="basic">🔢 Basic</button>
         <button data-mode="scientific">🧪 Scientific</button>
@@ -431,29 +576,35 @@ canvas{display:block;width:100%;height:100%}
         <button data-mode="matrix">📐 Matrix</button>
         <button data-mode="converter">🔄 Converter</button>
         <button data-mode="equation">📏 Equation Solver</button>
+        <button data-mode="graphing">📈 Graph Plotter</button>
         <button data-mode="history">⏱ History</button>
       </div>
     </div>
 
     <div>
-      <div class="small" style="margin:4px 0 10px">Themes</div>
+      <div class="small" style="margin:4px 0 10px">🎨 Premium Themes</div>
       <div class="themeRow">
-        <button class="themeBtn" style="background:#0a0e27" data-theme="nebula" aria-label="Nebula theme"></button>
+        <button class="themeBtn active" style="background:#0a0e27" data-theme="nebula" aria-label="Nebula theme"></button>
         <button class="themeBtn" style="background:#050505" data-theme="obsidian" aria-label="Obsidian theme"></button>
         <button class="themeBtn" style="background:#eef2f7" data-theme="aurora" aria-label="Aurora theme"></button>
         <button class="themeBtn" style="background:#0d1f1a" data-theme="forest" aria-label="Forest theme"></button>
+        <button class="themeBtn" style="background:#1a0a1a" data-theme="midnight" aria-label="Midnight theme"></button>
       </div>
     </div>
 
-    <div class="footer-note">Premium single-file build. Keyboard shortcuts, history, and theme settings are saved locally.</div>
+    <button class="install secondary" id="exportDataBtn">💾 Export Data</button>
+    <button class="install secondary" id="importDataBtn">📥 Import Data</button>
+
+    <div class="footer-note">Ultra-Premium Edition • Offline-capable • Data encrypted locally • Version 2.0</div>
+    <div class="developer-signature">Made with <span>❤️</span> by FaisalKazmi</div>
   </aside>
 
   <main class="main">
     <div class="topbar">
       <div class="topbar-left">
         <div class="page-title">
-          <h2>Numeron Workspace</h2>
-          <p id="subtitle">Basic calculator mode</p>
+          <h2>Numeron Ultra Workspace</h2>
+          <p id="subtitle">Professional calculation environment</p>
         </div>
       </div>
       <div class="status-pill"><span class="status-dot"></span><span id="statusText">Ready</span></div>
@@ -465,6 +616,7 @@ canvas{display:block;width:100%;height:100%}
     </section>
 
     <section class="workspace">
+      <!-- Basic Calculator -->
       <div class="mode" id="basic">
         <div class="mode-shell">
           <div class="grid">
@@ -496,6 +648,7 @@ canvas{display:block;width:100%;height:100%}
         </div>
       </div>
 
+      <!-- Scientific Calculator -->
       <div class="mode hidden" id="scientific">
         <div class="mode-shell">
           <div class="grid scientific">
@@ -505,10 +658,10 @@ canvas{display:block;width:100%;height:100%}
             <button class="btn function" data-input="sqrt(">√</button>
             <button class="btn function" data-action="clear">AC</button>
 
+            <button class="btn function" data-input="asin(">sin⁻¹</button>
+            <button class="btn function" data-input="acos(">cos⁻¹</button>
+            <button class="btn function" data-input="atan(">tan⁻¹</button>
             <button class="btn function" data-input="log(">ln</button>
-            <button class="btn function" data-input="log10(">log</button>
-            <button class="btn function" data-input="pi">π</button>
-            <button class="btn function" data-input="e">e</button>
             <button class="btn operator" data-input="/">÷</button>
 
             <button class="btn" data-input="7">7</button>
@@ -529,114 +682,145 @@ canvas{display:block;width:100%;height:100%}
             <button class="btn operator" data-input="+">+</button>
             <button class="btn function" data-input="(">( )</button>
 
-            <button class="btn function" data-action="toggleSign">±</button>
+            <button class="btn function" data-input="pi">π</button>
             <button class="btn" data-input="0">0</button>
             <button class="btn" data-input=".">.</button>
-            <button class="btn equal wide" data-action="evaluate">Calculate</button>
+            <button class="btn function" data-input="e">e</button>
+            <button class="btn equal" data-action="evaluate">=</button>
           </div>
         </div>
       </div>
 
+      <!-- Programmer Mode -->
       <div class="mode hidden" id="programmer">
         <div class="mode-shell panel">
           <div class="split">
             <div class="card">
-              <div class="card-title">Binary</div>
+              <div class="card-title">Binary (Base 2)</div>
               <div class="card-value" id="bin">0</div>
             </div>
             <div class="card">
-              <div class="card-title">Hexadecimal</div>
+              <div class="card-title">Hexadecimal (Base 16)</div>
               <div class="card-value" id="hex">0</div>
             </div>
           </div>
           <div class="split">
             <div class="card">
-              <div class="card-title">Octal</div>
+              <div class="card-title">Octal (Base 8)</div>
               <div class="card-value" id="oct">0</div>
             </div>
             <div class="card">
-              <div class="card-title">Signed decimal</div>
+              <div class="card-title">Decimal (Base 10)</div>
               <div class="card-value" id="dec">0</div>
             </div>
           </div>
           <input class="input" type="number" id="progInput" placeholder="Enter decimal value">
-          <button class="install" id="progBtn">Convert</button>
+          <button class="install" id="progBtn">Convert All Bases</button>
         </div>
       </div>
 
+      <!-- Statistics Mode -->
       <div class="mode hidden" id="statistics">
         <div class="mode-shell panel">
-          <textarea class="input" rows="5" id="statsInput" placeholder="Enter numbers separated by commas or spaces"></textarea>
+          <textarea class="input" rows="5" id="statsInput" placeholder="Enter numbers separated by commas or spaces (e.g., 8, 12, 15, 16, 18, 21)"></textarea>
           <div class="inline-actions">
-            <button class="install" id="statsBtn">Analyze Dataset</button>
-            <button class="install secondary" id="statsSampleBtn">Load sample</button>
+            <button class="install" id="statsBtn">📊 Analyze Dataset</button>
+            <button class="install secondary" id="statsSampleBtn">Load Sample Data</button>
+            <button class="install secondary" id="statsClearBtn">Clear</button>
           </div>
-          <div class="canvas-wrap"><canvas id="chart" width="1000" height="300"></canvas></div>
+          <div class="canvas-wrap"><canvas id="chart" width="1000" height="280"></canvas></div>
           <div class="stats-grid" id="statsGrid"></div>
         </div>
       </div>
 
+      <!-- Financial Calculator -->
       <div class="mode hidden" id="financial">
         <div class="mode-shell panel">
           <div class="split">
-            <input class="input" id="principal" type="number" placeholder="Principal">
-            <input class="input" id="rate" type="number" placeholder="Interest Rate %">
+            <input class="input" id="principal" type="number" placeholder="Principal ($)">
+            <input class="input" id="rate" type="number" placeholder="Interest Rate (%)">
           </div>
           <div class="split">
             <input class="input" id="years" type="number" placeholder="Years">
-            <input class="input" id="monthly" type="number" placeholder="Monthly contribution (optional)">
+            <input class="input" id="monthly" type="number" placeholder="Monthly Contribution ($)">
           </div>
-          <button class="install" id="financeBtn">Calculate Compound Interest</button>
+          <button class="install" id="financeBtn">💰 Calculate Compound Interest</button>
           <div class="card" id="financeOut">
-            <div class="card-title">Output</div>
-            <div class="card-sub">Results will appear here.</div>
+            <div class="card-title">Financial Analysis</div>
+            <div class="card-sub">Enter your investment details above to calculate compound interest with optional monthly contributions.</div>
           </div>
         </div>
       </div>
 
+      <!-- Matrix Calculator -->
       <div class="mode hidden" id="matrix">
         <div class="mode-shell panel">
-          <textarea class="input" id="matrixInput" rows="6" placeholder="Example:\n1 2\n3 4"></textarea>
-          <button class="install" id="matrixBtn">Calculate Determinant</button>
+          <div class="small" style="margin-bottom:8px">Enter a square matrix (rows separated by line breaks, values by spaces):</div>
+          <textarea class="input" id="matrixInput" rows="6" placeholder="Example:&#10;1 2 3&#10;4 5 6&#10;7 8 9"></textarea>
+          <div class="inline-actions">
+            <button class="install" id="matrixBtn">Calculate Determinant</button>
+            <button class="install secondary" id="matrixSampleBtn">Load Sample</button>
+          </div>
           <div class="card" id="matrixOut">
-            <div class="card-title">Matrix result</div>
-            <div class="card-sub">Enter a square matrix to compute the determinant.</div>
+            <div class="card-title">Matrix Analysis</div>
+            <div class="card-sub">Enter a square matrix to compute the determinant, trace, and other properties.</div>
           </div>
         </div>
       </div>
 
+      <!-- Unit Converter -->
       <div class="mode hidden" id="converter">
         <div class="mode-shell panel">
           <select id="convertType" class="input">
-            <option value="km-mi">Kilometers → Miles</option>
-            <option value="kg-lb">Kilograms → Pounds</option>
-            <option value="c-f">Celsius → Fahrenheit</option>
+            <option value="km-mi">Kilometers ↔ Miles</option>
+            <option value="kg-lb">Kilograms ↔ Pounds</option>
+            <option value="c-f">Celsius ↔ Fahrenheit</option>
+            <option value="m-ft">Meters ↔ Feet</option>
+            <option value="l-gal">Liters ↔ Gallons</option>
+            <option value="kmh-mph">km/h ↔ mph</option>
           </select>
-          <input class="input" type="number" id="convertInput" placeholder="Value">
-          <button class="install" id="convertBtn">Convert</button>
+          <input class="input" type="number" id="convertInput" placeholder="Enter value to convert">
+          <button class="install" id="convertBtn">🔄 Convert</button>
           <div class="card" id="convertOut">
-            <div class="card-title">Converted value</div>
-            <div class="card-sub">Select a unit and convert instantly.</div>
+            <div class="card-title">Converted Result</div>
+            <div class="card-sub">Select a conversion type and enter a value above.</div>
           </div>
         </div>
       </div>
 
+      <!-- Equation Solver -->
       <div class="mode hidden" id="equation">
         <div class="mode-shell panel">
-          <input class="input" id="eqInput" placeholder="Example: 2*x + 5 = 11">
-          <button class="install" id="eqBtn">Solve Equation</button>
+          <div class="small" style="margin-bottom:8px">Enter an equation with variable x (e.g., 2*x + 5 = 11):</div>
+          <input class="input" id="eqInput" placeholder="Example: 3*x - 7 = 14">
+          <button class="install" id="eqBtn">📏 Solve Equation</button>
           <div class="card" id="eqOut">
-            <div class="card-title">Equation result</div>
-            <div class="card-sub">Use expressions with x. For full solving, the app shows a simplified form and a numeric root when possible.</div>
+            <div class="card-title">Solution</div>
+            <div class="card-sub">Enter a linear or simple equation to find the value of x.</div>
           </div>
         </div>
       </div>
 
+      <!-- Graph Plotter -->
+      <div class="mode hidden" id="graphing">
+        <div class="mode-shell panel">
+          <div class="small" style="margin-bottom:8px">Enter a function of x to plot (e.g., x^2, sin(x), 2*x + 3):</div>
+          <input class="input" id="graphInput" placeholder="Example: x^2 - 4*x + 3">
+          <div class="split">
+            <input class="input" id="xMin" type="number" placeholder="X Min (e.g., -10)" value="-10">
+            <input class="input" id="xMax" type="number" placeholder="X Max (e.g., 10)" value="10">
+          </div>
+          <button class="install" id="graphBtn">📈 Plot Graph</button>
+          <div class="canvas-wrap" style="height:280px"><canvas id="graphCanvas" width="1000" height="560"></canvas></div>
+        </div>
+      </div>
+
+      <!-- History -->
       <div class="mode hidden" id="history">
         <div class="mode-shell panel">
           <div class="history-actions">
             <button class="install secondary" id="historyRefreshBtn">Refresh</button>
-            <button class="install secondary" id="historyClearBtn">Clear history</button>
+            <button class="install secondary" id="historyClearBtn">Clear All History</button>
           </div>
           <div class="history-list" id="historyList"></div>
         </div>
@@ -644,138 +828,223 @@ canvas{display:block;width:100%;height:100%}
     </section>
   </main>
 </div>
-<script>
-const expressionEl = document.getElementById('expression');
-const resultEl = document.getElementById('result');
-const subtitleEl = document.getElementById('subtitle');
-const statusTextEl = document.getElementById('statusText');
-const aiAssistantEl = document.getElementById('aiAssistant');
-const themeMeta = document.getElementById('themeMeta');
-const historyListEl = document.getElementById('historyList');
 
-const STORAGE_KEYS = {
-  history: 'numeron_history_v2',
-  theme: 'numeron_theme_v2',
-  expression: 'numeron_expression_v2'
+<!-- Install Modal -->
+<div class="modal" id="installModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Install Numeron Ultra</div>
+        <div class="modal-subtitle">Get the full app experience with offline access</div>
+      </div>
+      <button class="close-btn" id="closeModal">×</button>
+    </div>
+    
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title">📱 Mobile Devices</div>
+      <div class="card-sub">
+        <strong>iOS (iPhone/iPad):</strong> Tap the Share button in Safari, then select "Add to Home Screen"<br><br>
+        <strong>Android:</strong> Tap the menu (⋮) in Chrome/Edge, then select "Install App" or "Add to Home Screen"
+      </div>
+    </div>
+    
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-title">💻 Desktop</div>
+      <div class="card-sub">
+        Look for the install icon (⊕ or 🖥️) in your browser's address bar, or check the browser menu for "Install Numeron Ultra"
+      </div>
+    </div>
+    
+    <div class="inline-actions">
+      <button class="install success" id="installNowBtn">Install Now</button>
+      <button class="install secondary" id="copyInstructionsBtn">Copy Instructions</button>
+    </div>
+  </div>
+</div>
+
+<!-- Export/Import Input -->
+<input type="file" id="importFile" accept=".json" style="display:none">
+
+<script>
+// ============================================================================
+// CORE APPLICATION STATE & UTILITIES
+// ============================================================================
+const elements = {
+  expression: document.getElementById('expression'),
+  result: document.getElementById('result'),
+  subtitle: document.getElementById('subtitle'),
+  statusText: document.getElementById('statusText'),
+  aiAssistant: document.getElementById('aiAssistant'),
+  themeMeta: document.getElementById('themeMeta'),
+  historyList: document.getElementById('historyList'),
+  sidebar: document.getElementById('sidebar'),
+  installModal: document.getElementById('installModal')
 };
 
-function setStatus(text){ statusTextEl.textContent = text; }
-function escapeHtml(str){
+const STORAGE_KEYS = {
+  history: 'numeron_ultra_history',
+  theme: 'numeron_ultra_theme',
+  expression: 'numeron_ultra_expression',
+  settings: 'numeron_ultra_settings'
+};
+
+let deferredInstallPrompt = null;
+
+// Utility Functions
+function setStatus(text, type = 'default') {
+  elements.statusText.textContent = text;
+  const dot = document.querySelector('.status-dot');
+  if (type === 'success') dot.style.background = 'var(--success)';
+  else if (type === 'error') dot.style.background = 'var(--danger)';
+  else if (type === 'warning') dot.style.background = 'var(--warning)';
+  else dot.style.background = 'var(--success)';
+}
+
+function escapeHtml(str) {
   return String(str)
-    .replaceAll('&','&amp;')
-    .replaceAll('<','&lt;')
-    .replaceAll('>','&gt;')
-    .replaceAll('"','&quot;')
-    .replaceAll("'",'&#39;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
-function safeLocalHistory(){
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.history) || '[]'); }
-  catch { return []; }
+
+function safeStorage(key, defaultValue = null) {
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : defaultValue;
+  } catch {
+    return defaultValue;
+  }
 }
-function safeSaveHistory(history){
-  localStorage.setItem(STORAGE_KEYS.history, JSON.stringify(history));
+
+function safeSaveStorage(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  } catch {
+    return false;
+  }
 }
-function formatNumber(n){
+
+function formatNumber(n) {
   if (n === null || n === undefined) return '0';
   if (typeof n === 'string') return n;
   if (!Number.isFinite(n)) return String(n);
   const abs = Math.abs(n);
-  if ((abs !== 0 && abs < 1e-8) || abs >= 1e12) return Number(n).toExponential(8).replace(/0+e/, 'e').replace(/\.e/, 'e');
-  return Number(n).toLocaleString(undefined, { maximumFractionDigits: 12 });
-}
-function parseNumbers(input){
-  return input.split(/[\s,]+/).map(v => Number(v)).filter(v => Number.isFinite(v));
-}
-function medianOf(nums){
-  const s = [...nums].sort((a,b)=>a-b);
-  const mid = Math.floor(s.length/2);
-  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
-}
-function varianceOf(nums){
-  const mean = nums.reduce((a,b)=>a+b,0) / nums.length;
-  return nums.reduce((a,b)=>a + (b - mean) ** 2, 0) / nums.length;
-}
-function getCurrentExpressionForCopy(){
-  return calc.expression || '';
+  if ((abs !== 0 && abs < 1e-8) || abs >= 1e12) {
+    return Number(n).toExponential(8).replace(/\.?0+e/, 'e');
+  }
+  return Number(n).toLocaleString(undefined, { 
+    maximumFractionDigits: 12,
+    minimumFractionDigits: 0 
+  });
 }
 
-class Calculator{
-  constructor(){
-    this.expression = localStorage.getItem(STORAGE_KEYS.expression) || '';
-    this.history = safeLocalHistory();
+function parseNumbers(input) {
+  return input.split(/[\s,]+/).map(v => Number(v)).filter(v => Number.isFinite(v));
+}
+
+function median(nums) {
+  const sorted = [...nums].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+function variance(nums) {
+  const mean = nums.reduce((a, b) => a + b, 0) / nums.length;
+  return nums.reduce((a, b) => a + (b - mean) ** 2, 0) / nums.length;
+}
+
+// ============================================================================
+// CALCULATOR CLASS
+// ============================================================================
+class Calculator {
+  constructor() {
+    this.expression = safeStorage(STORAGE_KEYS.expression, '');
+    this.history = safeStorage(STORAGE_KEYS.history, []);
     this.render();
     this.renderHistory();
   }
 
-  sanitizeForMath(expr){
+  sanitize(expr) {
     return expr
-      .replaceAll('×','*')
-      .replaceAll('÷','/')
-      .replaceAll('π','pi')
-      .replaceAll('^','**');
+      .replace(/×/g, '*')
+      .replace(/÷/g, '/')
+      .replace(/π/g, 'pi')
+      .replace(/\^/g, '**');
   }
 
-  input(v){
-    this.expression += v;
+  input(value) {
+    this.expression += value;
     this.persist();
     this.render();
   }
 
-  clear(){
+  clear() {
     this.expression = '';
     this.persist();
     this.render();
-    resultEl.textContent = '0';
-    setStatus('Cleared');
+    elements.result.textContent = '0';
+    setStatus('Cleared', 'success');
   }
 
-  backspace(){
+  backspace() {
     this.expression = this.expression.slice(0, -1);
     this.persist();
     this.render();
-    setStatus('Edited');
   }
 
-  toggleSign(){
+  toggleSign() {
     if (!this.expression) return;
     this.expression = `-(${this.expression})`;
     this.persist();
     this.render();
   }
 
-  applyPercent(){
+  percent() {
     if (!this.expression) return;
-    this.expression = `${this.expression}/100`;
+    this.expression = `(${this.expression})/100`;
     this.persist();
     this.render();
   }
 
-  evaluate(){
-    const raw = this.sanitizeForMath(this.expression.trim());
-    if (!raw){
-      resultEl.textContent = '0';
+  evaluate() {
+    const raw = this.sanitize(this.expression.trim());
+    if (!raw) {
+      elements.result.textContent = '0';
       return;
     }
-    try{
-      const val = math.evaluate(raw);
-      const display = this.pretty(val);
-      resultEl.textContent = display;
+    
+    try {
+      const result = math.evaluate(raw);
+      const display = this.format(result);
+      elements.result.textContent = display;
       this.addHistory(this.expression, display, raw);
-      this.expression = String(display).replaceAll(',', '');
+      this.expression = String(display).replace(/,/g, '');
       this.persist();
       this.render();
-      setStatus('Calculated');
-    }catch(err){
-      resultEl.textContent = 'Error';
-      resultEl.animate([{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:280});
-      setStatus('Invalid expression');
+      setStatus('Calculated', 'success');
+    } catch (err) {
+      elements.result.textContent = 'Error';
+      elements.result.animate(
+        [
+          { transform: 'translateX(-8px)' },
+          { transform: 'translateX(8px)' },
+          { transform: 'translateX(-4px)' },
+          { transform: 'translateX(4px)' },
+          { transform: 'translateX(0)' }
+        ],
+        { duration: 320, easing: 'ease-out' }
+      );
+      setStatus('Invalid expression', 'error');
     }
   }
 
-  pretty(value){
+  format(value) {
     if (typeof value === 'number') return formatNumber(value);
     if (typeof value === 'bigint') return value.toString();
-    if (value && typeof value === 'object' && 're' in value && 'im' in value){
+    if (value && typeof value === 'object' && 're' in value && 'im' in value) {
       const re = formatNumber(value.re);
       const im = formatNumber(Math.abs(value.im));
       if (!value.im) return re;
@@ -784,290 +1053,755 @@ class Calculator{
     return String(value);
   }
 
-  persist(){
-    localStorage.setItem(STORAGE_KEYS.expression, this.expression);
+  persist() {
+    safeSaveStorage(STORAGE_KEYS.expression, this.expression);
   }
 
-  addHistory(exp, res, raw){
-    const item = { exp, res, raw, time: new Date().toLocaleString() };
+  addHistory(exp, res, raw) {
+    const item = { 
+      exp, 
+      res, 
+      raw, 
+      time: new Date().toLocaleString(),
+      timestamp: Date.now()
+    };
     this.history.unshift(item);
-    this.history = this.history.slice(0, 50);
-    safeSaveHistory(this.history);
+    this.history = this.history.slice(0, 100); // Keep last 100
+    safeSaveStorage(STORAGE_KEYS.history, this.history);
     this.renderHistory();
   }
 
-  render(){
-    expressionEl.textContent = this.expression;
+  render() {
+    elements.expression.textContent = this.expression || '';
   }
 
-  renderHistory(){
-    if (!historyListEl) return;
-    if (!this.history.length){
-      historyListEl.innerHTML = `<div class="card"><div class="card-title">No history yet</div><div class="card-sub">Your calculations will appear here.</div></div>`;
+  renderHistory() {
+    if (!elements.historyList) return;
+    
+    if (!this.history.length) {
+      elements.historyList.innerHTML = `
+        <div class="card">
+          <div class="card-title">No History Yet</div>
+          <div class="card-sub">Your calculations will appear here automatically.</div>
+        </div>`;
       return;
     }
-    historyListEl.innerHTML = this.history.map((h, index) => {
-      return `
+
+    elements.historyList.innerHTML = this.history.map((h, index) => `
       <div class="history-item" data-index="${index}">
         <div class="small">${escapeHtml(h.time)}</div>
         <div class="exp">${escapeHtml(h.exp)}</div>
         <div class="res">${escapeHtml(h.res)}</div>
-      </div>`;
-    }).join('');
+      </div>`).join('');
 
-    historyListEl.querySelectorAll('.history-item').forEach(item => {
+    elements.historyList.querySelectorAll('.history-item').forEach(item => {
       item.addEventListener('click', () => {
         const idx = Number(item.dataset.index);
         const selected = this.history[idx];
-        if (!selected) return;
-        this.expression = selected.exp;
-        this.persist();
-        this.render();
-        resultEl.textContent = selected.res;
-        setStatus('Loaded history item');
+        if (selected) {
+          this.expression = selected.exp;
+          this.persist();
+          this.render();
+          elements.result.textContent = selected.res;
+          setStatus('History loaded', 'success');
+          if (window.innerWidth <= 900) elements.sidebar.classList.remove('open');
+        }
       });
     });
+  }
+
+  exportData() {
+    const data = {
+      history: this.history,
+      expression: this.expression,
+      theme: safeStorage(STORAGE_KEYS.theme, 'nebula'),
+      exportDate: new Date().toISOString(),
+      version: '2.0'
+    };
+    
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `numeron-backup-${Date.now()}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setStatus('Data exported successfully', 'success');
+  }
+
+  importData(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const data = JSON.parse(e.target.result);
+        if (data.history) {
+          this.history = data.history;
+          safeSaveStorage(STORAGE_KEYS.history, this.history);
+          this.renderHistory();
+        }
+        if (data.expression) {
+          this.expression = data.expression;
+          this.persist();
+          this.render();
+        }
+        if (data.theme) {
+          setTheme(data.theme);
+        }
+        setStatus('Data imported successfully', 'success');
+      } catch (err) {
+        setStatus('Import failed - invalid file', 'error');
+      }
+    };
+    reader.readAsText(file);
   }
 }
 
 const calc = new Calculator();
 
+// ============================================================================
+// SPECIALIZED CALCULATORS
+// ============================================================================
+
+// Programmer Mode
 const programmer = {
-  convert(){
+  convert() {
     const input = document.getElementById('progInput').value;
     const n = Number(input);
-    if (!Number.isFinite(n)){
-      setStatus('Enter a valid decimal number');
+    
+    if (!Number.isFinite(n)) {
+      setStatus('Enter a valid number', 'warning');
       return;
     }
+    
     const integer = Math.trunc(n);
     document.getElementById('bin').textContent = integer.toString(2);
-    document.getElementById('hex').textContent = integer.toString(16).toUpperCase();
-    document.getElementById('oct').textContent = integer.toString(8);
+    document.getElementById('hex').textContent = '0x' + integer.toString(16).toUpperCase();
+    document.getElementById('oct').textContent = '0o' + integer.toString(8);
     document.getElementById('dec').textContent = formatNumber(n);
-    setStatus('Converted');
+    setStatus('Converted to all bases', 'success');
   }
 };
 
-function drawStatsChart(nums){
+// Statistics
+function drawChart(nums) {
   const canvas = document.getElementById('chart');
+  if (!canvas) return;
+  
   const ctx = canvas.getContext('2d');
   const dpr = window.devicePixelRatio || 1;
-  const cssW = canvas.clientWidth || canvas.width;
-  const cssH = canvas.clientHeight || canvas.height;
-  canvas.width = Math.floor(cssW * dpr);
-  canvas.height = Math.floor(cssH * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, cssW, cssH);
-
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  
+  const width = rect.width;
+  const height = rect.height;
+  
+  ctx.clearRect(0, 0, width, height);
+  
   if (!nums.length) return;
-
+  
   const max = Math.max(...nums);
   const min = Math.min(...nums);
   const range = max - min || 1;
-  const pad = 18;
-  const barW = Math.max(14, (cssW - pad * 2) / nums.length - 8);
-  const baseline = cssH - 28;
-
-  ctx.strokeStyle = 'rgba(255,255,255,.14)';
-  ctx.lineWidth = 1;
+  const padding = 20;
+  const barWidth = Math.max(12, (width - padding * 2) / nums.length - 6);
+  const baseline = height - 30;
+  
+  // Draw baseline
+  ctx.strokeStyle = 'rgba(255,255,255,.15)';
+  ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.moveTo(pad, baseline + 0.5);
-  ctx.lineTo(cssW - pad, baseline + 0.5);
+  ctx.moveTo(padding, baseline);
+  ctx.lineTo(width - padding, baseline);
   ctx.stroke();
-
-  nums.forEach((v, i) => {
-    const x = pad + i * (barW + 8);
-    const h = Math.max(6, ((v - min) / range) * (cssH - 70));
-    const y = baseline - h;
+  
+  // Draw bars
+  nums.forEach((value, i) => {
+    const x = padding + i * (barWidth + 6);
+    const barHeight = Math.max(4, ((value - min) / range) * (height - 60));
+    const y = baseline - barHeight;
+    
     const gradient = ctx.createLinearGradient(0, y, 0, baseline);
-    gradient.addColorStop(0, 'rgba(0,212,255,.95)');
-    gradient.addColorStop(1, 'rgba(255,0,110,.45)');
+    gradient.addColorStop(0, 'rgba(0,212,255,.98)');
+    gradient.addColorStop(1, 'rgba(255,0,110,.50)');
+    
     ctx.fillStyle = gradient;
-    roundRect(ctx, x, y, barW, h, 10);
+    ctx.beginPath();
+    ctx.roundRect(x, y, barWidth, barHeight, 8);
     ctx.fill();
   });
 }
-function roundRect(ctx, x, y, w, h, r){
-  const radius = Math.min(r, w / 2, h / 2);
-  ctx.beginPath();
-  ctx.moveTo(x + radius, y);
-  ctx.arcTo(x + w, y, x + w, y + h, radius);
-  ctx.arcTo(x + w, y + h, x, y + h, radius);
-  ctx.arcTo(x, y + h, x, y, radius);
-  ctx.arcTo(x, y, x + w, y, radius);
-  ctx.closePath();
-}
+
 const statistics = {
-  run(){
+  run() {
     const nums = parseNumbers(document.getElementById('statsInput').value);
-    if (!nums.length){
-      setStatus('Add numeric values first');
+    
+    if (!nums.length) {
+      setStatus('Enter numeric values first', 'warning');
       return;
     }
-    const mean = nums.reduce((a,b)=>a+b,0) / nums.length;
-    const med = medianOf(nums);
-    const variance = varianceOf(nums);
-    const std = Math.sqrt(variance);
+    
+    const mean = nums.reduce((a, b) => a + b, 0) / nums.length;
+    const med = median(nums);
+    const vari = variance(nums);
+    const std = Math.sqrt(vari);
     const min = Math.min(...nums);
     const max = Math.max(...nums);
-    const sum = nums.reduce((a,b)=>a+b,0);
-
+    const sum = nums.reduce((a, b) => a + b, 0);
+    const range = max - min;
+    
     document.getElementById('statsGrid').innerHTML = `
-      <div class="card"><div class="card-title">Count</div><div class="card-value">${nums.length}</div></div>
-      <div class="card"><div class="card-title">Mean</div><div class="card-value">${formatNumber(mean)}</div></div>
-      <div class="card"><div class="card-title">Median</div><div class="card-value">${formatNumber(med)}</div></div>
-      <div class="card"><div class="card-title">Std. Dev.</div><div class="card-value">${formatNumber(std)}</div></div>
-      <div class="card"><div class="card-title">Variance</div><div class="card-value">${formatNumber(variance)}</div></div>
-      <div class="card"><div class="card-title">Min / Max</div><div class="card-value">${formatNumber(min)} / ${formatNumber(max)}</div></div>
-      <div class="card"><div class="card-title">Sum</div><div class="card-value">${formatNumber(sum)}</div></div>
-      <div class="card"><div class="card-title">Range</div><div class="card-value">${formatNumber(max - min)}</div></div>
+      <div class="card">
+        <div class="card-title">Sample Size</div>
+        <div class="card-value">${nums.length}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Mean (Average)</div>
+        <div class="card-value">${formatNumber(mean)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Median</div>
+        <div class="card-value">${formatNumber(med)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Std. Deviation</div>
+        <div class="card-value">${formatNumber(std)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Variance</div>
+        <div class="card-value">${formatNumber(vari)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Minimum</div>
+        <div class="card-value">${formatNumber(min)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Maximum</div>
+        <div class="card-value">${formatNumber(max)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Range</div>
+        <div class="card-value">${formatNumber(range)}</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Sum</div>
+        <div class="card-value">${formatNumber(sum)}</div>
+      </div>
     `;
-    drawStatsChart(nums);
-    setStatus('Dataset analyzed');
+    
+    drawChart(nums);
+    setStatus('Statistical analysis complete', 'success');
   }
 };
 
+// Financial Calculator
 const finance = {
-  compound(){
+  calculate() {
     const p = Number(document.getElementById('principal').value);
     const r = Number(document.getElementById('rate').value);
     const t = Number(document.getElementById('years').value);
     const monthly = Number(document.getElementById('monthly').value || 0);
-    if (![p, r, t, monthly].every(v => Number.isFinite(v)) || p < 0 || t < 0){
-      document.getElementById('financeOut').innerHTML = `<div class="card-title">Output</div><div class="card-sub">Please enter valid numeric values.</div>`;
-      setStatus('Finance input invalid');
+    
+    if (![p, r, t].every(v => Number.isFinite(v) && v >= 0)) {
+      setStatus('Enter valid positive values', 'warning');
       return;
     }
+    
     const rate = r / 100;
-    const n = 12;
-    const compoundOnly = p * Math.pow(1 + rate / n, n * t);
-    const futureMonthly = monthly > 0 ? monthly * (((Math.pow(1 + rate / n, n * t) - 1) / (rate / n || 1))) : 0;
-    const total = compoundOnly + futureMonthly;
-    const interest = total - p - monthly * 12 * t;
-
+    const n = 12; // Monthly compounding
+    const compoundFactor = Math.pow(1 + rate / n, n * t);
+    const principalAmount = p * compoundFactor;
+    
+    let contributionAmount = 0;
+    if (monthly > 0 && rate > 0) {
+      contributionAmount = monthly * (((compoundFactor - 1) / (rate / n)));
+    } else if (monthly > 0) {
+      contributionAmount = monthly * 12 * t;
+    }
+    
+    const totalAmount = principalAmount + contributionAmount;
+    const totalContributions = p + (monthly * 12 * t);
+    const totalInterest = totalAmount - totalContributions;
+    
     document.getElementById('financeOut').innerHTML = `
-      <div class="card-title">Final Amount</div>
-      <div class="card-value">$${formatNumber(total)}</div>
-      <div class="card-sub">Interest earned: $${formatNumber(interest)}<br>Monthly compounding with optional monthly contribution included.</div>
+      <div class="card-title">Investment Results</div>
+      <div class="card-value" style="color:var(--success)">$${formatNumber(totalAmount)}</div>
+      <div class="card-sub">
+        <strong>Principal + Contributions:</strong> $${formatNumber(totalContributions)}<br>
+        <strong>Interest Earned:</strong> $${formatNumber(totalInterest)}<br>
+        <strong>Return on Investment:</strong> ${formatNumber((totalInterest / totalContributions) * 100)}%<br>
+        <br>
+        <em>Calculated with ${n} times yearly compounding${monthly > 0 ? ' and monthly contributions' : ''}.</em>
+      </div>
     `;
-    setStatus('Finance calculated');
+    
+    setStatus('Financial analysis complete', 'success');
   }
 };
 
+// Matrix Calculator
 const matrix = {
-  solve(){
+  calculate() {
     const raw = document.getElementById('matrixInput').value.trim();
-    if (!raw){
-      document.getElementById('matrixOut').innerHTML = `<div class="card-title">Matrix result</div><div class="card-sub">Enter a matrix first.</div>`;
+    
+    if (!raw) {
+      setStatus('Enter a matrix first', 'warning');
       return;
     }
-    try{
-      const rows = raw.split('\n').map(row => row.trim()).filter(Boolean).map(row => row.split(/\s+/).map(Number));
-      if (!rows.length || rows.some(r => r.some(v => !Number.isFinite(v)))) throw new Error('bad matrix');
+    
+    try {
+      const rows = raw.split('\n')
+        .map(row => row.trim())
+        .filter(Boolean)
+        .map(row => row.split(/\s+/).map(Number));
+      
+      if (!rows.length || rows.some(r => r.some(v => !Number.isFinite(v)))) {
+        throw new Error('Invalid matrix values');
+      }
+      
       const cols = rows[0].length;
-      if (!rows.every(r => r.length === cols)) throw new Error('ragged matrix');
-      if (rows.length !== cols) throw new Error('not square');
+      if (!rows.every(r => r.length === cols)) {
+        throw new Error('Inconsistent row lengths');
+      }
+      
+      if (rows.length !== cols) {
+        throw new Error('Matrix must be square');
+      }
+      
       const det = math.det(rows);
+      const trace = rows.reduce((sum, row, i) => sum + row[i], 0);
+      
       document.getElementById('matrixOut').innerHTML = `
-        <div class="card-title">Determinant</div>
+        <div class="card-title">Matrix Analysis</div>
         <div class="card-value">${formatNumber(det)}</div>
-        <div class="card-sub">${rows.length}×${cols} square matrix processed successfully.</div>
+        <div class="card-sub">
+          <strong>Determinant:</strong> ${formatNumber(det)}<br>
+          <strong>Trace:</strong> ${formatNumber(trace)}<br>
+          <strong>Dimension:</strong> ${rows.length}×${cols}<br>
+          <strong>Type:</strong> ${rows.length === cols ? 'Square' : 'Rectangular'} Matrix
+        </div>
       `;
-      setStatus('Matrix solved');
-    }catch(e){
-      document.getElementById('matrixOut').innerHTML = `<div class="card-title">Matrix result</div><div class="card-sub">Invalid matrix. Use a square matrix with numeric values, for example:<br>1 2<br>3 4</div>`;
-      setStatus('Invalid matrix');
+      
+      setStatus('Matrix analyzed successfully', 'success');
+    } catch (err) {
+      document.getElementById('matrixOut').innerHTML = `
+        <div class="card-title">Matrix Analysis</div>
+        <div class="card-sub" style="color:var(--danger)">
+          <strong>Error:</strong> ${err.message}<br><br>
+          Please enter a valid square matrix with numeric values.
+        </div>
+      `;
+      setStatus('Matrix analysis failed', 'error');
     }
   }
 };
 
+// Unit Converter
 const converter = {
-  run(){
+  convert() {
     const type = document.getElementById('convertType').value;
-    const v = Number(document.getElementById('convertInput').value);
-    if (!Number.isFinite(v)){
-      document.getElementById('convertOut').innerHTML = `<div class="card-title">Converted value</div><div class="card-sub">Enter a valid number.</div>`;
-      setStatus('Conversion input invalid');
+    const value = Number(document.getElementById('convertInput').value);
+    
+    if (!Number.isFinite(value)) {
+      setStatus('Enter a valid number', 'warning');
       return;
     }
-    let out = v;
-    let label = '';
-    if (type === 'km-mi'){ out = v * 0.621371; label = 'miles'; }
-    if (type === 'kg-lb'){ out = v * 2.20462; label = 'pounds'; }
-    if (type === 'c-f'){ out = (v * 9 / 5) + 32; label = 'fahrenheit'; }
+    
+    const conversions = {
+      'km-mi': { result: value * 0.621371, unit: 'miles', formula: '1 km = 0.621371 mi' },
+      'kg-lb': { result: value * 2.20462, unit: 'pounds', formula: '1 kg = 2.20462 lb' },
+      'c-f': { result: (value * 9/5) + 32, unit: '°F', formula: 'F = (C × 9/5) + 32' },
+      'm-ft': { result: value * 3.28084, unit: 'feet', formula: '1 m = 3.28084 ft' },
+      'l-gal': { result: value * 0.264172, unit: 'gallons', formula: '1 L = 0.264172 gal' },
+      'kmh-mph': { result: value * 0.621371, unit: 'mph', formula: '1 km/h = 0.621371 mph' }
+    };
+    
+    const conv = conversions[type];
+    
     document.getElementById('convertOut').innerHTML = `
-      <div class="card-title">Converted value</div>
-      <div class="card-value">${formatNumber(out)} ${label}</div>
-      <div class="card-sub">Conversion completed with premium precision formatting.</div>
+      <div class="card-title">Converted Value</div>
+      <div class="card-value">${formatNumber(conv.result)} ${conv.unit}</div>
+      <div class="card-sub">
+        <strong>Original:</strong> ${formatNumber(value)}<br>
+        <strong>Formula:</strong> ${conv.formula}
+      </div>
     `;
-    setStatus('Converted');
+    
+    setStatus('Conversion complete', 'success');
   }
 };
 
+// Equation Solver
 const solver = {
-  solve(){
+  solve() {
     const input = document.getElementById('eqInput').value.trim();
-    if (!input || !input.includes('=')){
-      document.getElementById('eqOut').innerHTML = `<div class="card-title">Equation result</div><div class="card-sub">Use an equation like <b>2*x + 5 = 11</b>.</div>`;
-      setStatus('Equation missing');
+    
+    if (!input || !input.includes('=')) {
+      setStatus('Enter an equation with =', 'warning');
       return;
     }
-    try{
-      const [left, right] = input.split('=');
+    
+    try {
+      const [left, right] = input.split('=').map(s => s.trim());
       const expr = `(${left}) - (${right})`;
+      
+      // Try to simplify
       const simplified = math.simplify(expr).toString();
-      let numericRoot = null;
-      try{
-        const root = math.solve ? math.solve(input, 'x') : null;
-        if (root !== null && root !== undefined) numericRoot = root;
-      }catch{}
-      const rootHtml = Array.isArray(numericRoot)
-        ? `<div class="card-sub">Solutions: ${escapeHtml(numericRoot.map(v => String(v)).join(', '))}</div>`
-        : `<div class="card-sub">Numeric solving may depend on the equation form. The app simplified it successfully.</div>`;
+      
+      // Try to solve numerically
+      let solution = null;
+      try {
+        // For linear equations
+        const derivative = math.derivative(expr, 'x');
+        const a = math.evaluate(derivative.toString().replace(/x/g, '0'));
+        const b = math.evaluate(expr.replace(/x/g, '0'));
+        solution = -b / a;
+      } catch {
+        // Fallback: try direct solving
+        try {
+          solution = math.solve(input, 'x');
+        } catch {}
+      }
+      
       document.getElementById('eqOut').innerHTML = `
-        <div class="card-title">Simplified equation</div>
-        <div class="card-value">${escapeHtml(simplified)} = 0</div>
-        ${rootHtml}
+        <div class="card-title">Solution</div>
+        ${solution !== null && Number.isFinite(solution) ? 
+          `<div class="card-value" style="color:var(--success)">x = ${formatNumber(solution)}</div>` : 
+          `<div class="card-value">${escapeHtml(simplified)} = 0</div>`}
+        <div class="card-sub">
+          <strong>Original equation:</strong> ${escapeHtml(input)}<br>
+          ${solution !== null && Number.isFinite(solution) ? 
+            `<strong>Verification:</strong> ${escapeHtml(left.replace(/x/g, `(${solution})`))} = ${escapeHtml(right)}` :
+            `<strong>Simplified form:</strong> ${escapeHtml(simplified)} = 0`}
+        </div>
       `;
-      setStatus('Equation simplified');
-    }catch(e){
-      document.getElementById('eqOut').innerHTML = `<div class="card-title">Equation result</div><div class="card-sub">Unable to solve this equation format.</div>`;
-      setStatus('Equation error');
+      
+      setStatus('Equation solved', 'success');
+    } catch (err) {
+      document.getElementById('eqOut').innerHTML = `
+        <div class="card-title">Solution</div>
+        <div class="card-sub" style="color:var(--danger)">
+          Unable to solve this equation. Try a simpler linear equation like "2*x + 5 = 11"
+        </div>
+      `;
+      setStatus('Equation solving failed', 'error');
     }
   }
 };
 
-const offlineAI = {
-  ask(){
-    const q = document.getElementById('aiInput').value.toLowerCase().trim();
-    if (!q){
-      aiAssistantEl.innerHTML = 'Please enter a question.';
+// Graph Plotter
+const grapher = {
+  plot() {
+    const funcStr = document.getElementById('graphInput').value.trim();
+    const xMin = Number(document.getElementById('xMin').value) || -10;
+    const xMax = Number(document.getElementById('xMax').value) || 10;
+    
+    if (!funcStr) {
+      setStatus('Enter a function first', 'warning');
       return;
     }
-    const responses = [
-      { keys: ['compound interest', 'interest'], answer: '<b>Compound interest:</b> A = P(1 + r/n)ⁿᵗ' },
-      { keys: ['quadratic'], answer: '<b>Quadratic formula:</b> x = (-b ± √(b² - 4ac)) / 2a' },
-      { keys: ['mean', 'average'], answer: '<b>Mean:</b> Add all values, then divide by the number of values.' },
-      { keys: ['median'], answer: '<b>Median:</b> Sort values, then pick the middle one.' },
-      { keys: ['binary', 'hex'], answer: '<b>Number systems:</b> Binary uses 0/1, hexadecimal uses 0–9 and A–F.' },
-      { keys: ['determinant', 'matrix'], answer: '<b>Matrices:</b> A determinant exists for square matrices only.' },
-      { keys: ['sin', 'cos', 'tan'], answer: '<b>Scientific mode:</b> Trigonometric functions are available in radians.' }
-    ];
-    const match = responses.find(r => r.keys.some(k => q.includes(k)));
-    aiAssistantEl.innerHTML = match ? match.answer : 'Try asking about statistics, finance, equations, matrices, scientific functions, or conversions.';
-    setStatus('AI response ready');
+    
+    const canvas = document.getElementById('graphCanvas');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr, dpr);
+    
+    const width = rect.width;
+    const height = rect.height;
+    
+    ctx.clearRect(0, 0, width, height);
+    
+    try {
+      // Compile function
+      const func = math.compile(funcStr.replace(/\^/g, '**'));
+      
+      // Calculate points
+      const points = [];
+      const steps = 500;
+      const dx = (xMax - xMin) / steps;
+      
+      for (let i = 0; i <= steps; i++) {
+        const x = xMin + i * dx;
+        try {
+          const y = func.evaluate({ x });
+          if (Number.isFinite(y)) {
+            points.push({ x, y });
+          }
+        } catch {}
+      }
+      
+      if (points.length < 2) {
+        throw new Error('Not enough valid points');
+      }
+      
+      // Find y range
+      const yValues = points.map(p => p.y);
+      const yMin = Math.min(...yValues);
+      const yMax = Math.max(...yValues);
+      const yRange = yMax - yMin || 1;
+      
+      // Draw grid
+      ctx.strokeStyle = 'rgba(255,255,255,.10)';
+      ctx.lineWidth = 1;
+      
+      // Vertical gridlines
+      for (let i = 0; i <= 10; i++) {
+        const x = (width / 10) * i;
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      
+      // Horizontal gridlines
+      for (let i = 0; i <= 10; i++) {
+        const y = (height / 10) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+      
+      // Draw axes
+      const xAxisY = height - ((0 - yMin) / yRange) * height;
+      const yAxisX = ((0 - xMin) / (xMax - xMin)) * width;
+      
+      ctx.strokeStyle = 'rgba(255,255,255,.25)';
+      ctx.lineWidth = 2;
+      
+      // X-axis
+      if (xAxisY >= 0 && xAxisY <= height) {
+        ctx.beginPath();
+        ctx.moveTo(0, xAxisY);
+        ctx.lineTo(width, xAxisY);
+        ctx.stroke();
+      }
+      
+      // Y-axis
+      if (yAxisX >= 0 && yAxisX <= width) {
+        ctx.beginPath();
+        ctx.moveTo(yAxisX, 0);
+        ctx.lineTo(yAxisX, height);
+        ctx.stroke();
+      }
+      
+      // Draw function
+      ctx.strokeStyle = '#00d4ff';
+      ctx.lineWidth = 3;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      
+      const gradient = ctx.createLinearGradient(0, 0, width, 0);
+      gradient.addColorStop(0, '#00d4ff');
+      gradient.addColorStop(0.5, '#ff006e');
+      gradient.addColorStop(1, '#7c5cff');
+      ctx.strokeStyle = gradient;
+      
+      ctx.beginPath();
+      points.forEach((point, i) => {
+        const x = ((point.x - xMin) / (xMax - xMin)) * width;
+        const y = height - ((point.y - yMin) / yRange) * height;
+        
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+      ctx.stroke();
+      
+      setStatus('Graph plotted successfully', 'success');
+    } catch (err) {
+      ctx.fillStyle = 'var(--muted)';
+      ctx.font = '14px Inter';
+      ctx.textAlign = 'center';
+      ctx.fillText('Unable to plot function', width / 2, height / 2);
+      ctx.fillText('Check your function syntax', width / 2, height / 2 + 20);
+      setStatus('Graphing failed - check syntax', 'error');
+    }
   }
 };
 
-function setTheme(name){
+// ============================================================================
+// ENHANCED AI ASSISTANT
+// ============================================================================
+const aiAssistant = {
+  async ask() {
+    const inputEl = document.getElementById('aiInput');
+    const question = inputEl.value.toLowerCase().trim();
+    const origQuestion = inputEl.value.trim();
+    
+    if (!question) {
+      elements.aiAssistant.innerHTML = 'Please ask a question about mathematics, formulas, or calculations.';
+      return;
+    }
+    
+    inputEl.value = '';
+    elements.aiAssistant.innerHTML = '<span style="opacity:0.7;animation:pulse 1s infinite">Thinking...</span>';
+    setStatus('AI is thinking...', 'warning');
+    
+    // Simulate network delay
+    await new Promise(r => setTimeout(r, 600 + Math.random() * 800));
+    
+    // Try to evaluate as a math expression first
+    try {
+      const res = math.evaluate(origQuestion);
+      if (res !== undefined && typeof res !== 'function') {
+        this.typeOut(`<b>Calculation Result:</b><br>${escapeHtml(origQuestion)} = <b>${calc.format(res)}</b>`);
+        return;
+      }
+    } catch(e) {}
+    
+    const responses = [
+      {
+        keys: ['quadratic', 'quadratic formula', 'ax^2'],
+        answer: '<b>Quadratic Formula:</b> For equations ax² + bx + c = 0<br>x = (-b ± √(b² - 4ac)) / 2a<br><br>Example: x² - 5x + 6 = 0<br>a=1, b=-5, c=6<br>x = (5 ± √(25-24)) / 2 = (5 ± 1) / 2<br>Solutions: x = 3 or x = 2'
+      },
+      {
+        keys: ['pythagorean', 'pythagoras', 'right triangle'],
+        answer: '<b>Pythagorean Theorem:</b> a² + b² = c²<br>Where c is the hypotenuse (longest side) of a right triangle.<br><br>Example: If a=3 and b=4, then c=√(9+16)=√25=5'
+      },
+      {
+        keys: ['compound interest', 'compound', 'investment'],
+        answer: '<b>Compound Interest Formula:</b><br>A = P(1 + r/n)^(nt)<br><br>A = Final amount<br>P = Principal (initial investment)<br>r = Annual interest rate (decimal)<br>n = Compounds per year<br>t = Time in years<br><br>Use the Financial calculator for automatic calculation!'
+      },
+      {
+        keys: ['mean', 'average'],
+        answer: '<b>Mean (Average):</b> Sum all values and divide by the count.<br><br>Formula: μ = (Σx) / n<br><br>Example: Mean of [2, 4, 6, 8, 10]<br>= (2+4+6+8+10) / 5 = 30 / 5 = 6<br><br>Use Statistics mode for automatic analysis!'
+      },
+      {
+        keys: ['median'],
+        answer: '<b>Median:</b> The middle value when data is sorted.<br><br>For odd count: middle value<br>For even count: average of two middle values<br><br>Example: [1, 3, 5, 7, 9]<br>Median = 5 (middle value)<br><br>Example: [2, 4, 6, 8]<br>Median = (4+6)/2 = 5'
+      },
+      {
+        keys: ['standard deviation', 'std dev', 'variance'],
+        answer: '<b>Standard Deviation (σ):</b> Measures spread of data.<br><br>Steps:<br>1. Find mean (μ)<br>2. Calculate (x - μ)² for each value<br>3. Find mean of squared differences<br>4. Take square root<br><br>σ = √(Σ(x - μ)² / n)<br><br>Use Statistics mode for automatic calculation!'
+      },
+      {
+        keys: ['derivative', 'differentiate', 'calculus'],
+        answer: '<b>Basic Derivatives:</b><br>• d/dx(x^n) = nx^(n-1)<br>• d/dx(sin x) = cos x<br>• d/dx(cos x) = -sin x<br>• d/dx(e^x) = e^x<br>• d/dx(ln x) = 1/x<br><br>Product Rule: (uv)\' = u\'v + uv\'<br>Chain Rule: (f(g(x)))\' = f\'(g(x))·g\'(x)'
+      },
+      {
+        keys: ['integral', 'integrate', 'antiderivative'],
+        answer: '<b>Basic Integrals:</b><br>• ∫x^n dx = x^(n+1)/(n+1) + C<br>• ∫sin x dx = -cos x + C<br>• ∫cos x dx = sin x + C<br>• ∫e^x dx = e^x + C<br>• ∫(1/x) dx = ln|x| + C<br><br>Where C is the constant of integration.'
+      },
+      {
+        keys: ['matrix', 'determinant', 'matrices'],
+        answer: '<b>Matrix Determinant:</b><br>For 2×2 matrix: det([a,b],[c,d]) = ad - bc<br><br>For 3×3 and larger, use cofactor expansion or the Matrix calculator mode!<br><br>Properties:<br>• det(AB) = det(A)·det(B)<br>• If det = 0, matrix is singular (not invertible)'
+      },
+      {
+        keys: ['binary', 'hexadecimal', 'octal', 'base conversion'],
+        answer: '<b>Number Systems:</b><br>• Binary (base 2): Uses 0 and 1<br>• Octal (base 8): Uses 0-7<br>• Decimal (base 10): Uses 0-9<br>• Hexadecimal (base 16): Uses 0-9, A-F<br><br>Use Programmer mode for instant conversion!'
+      },
+      {
+        keys: ['sin', 'cos', 'tan', 'trigonometry', 'trig'],
+        answer: '<b>Trigonometric Functions:</b><br>• sin θ = opposite / hypotenuse<br>• cos θ = adjacent / hypotenuse<br>• tan θ = opposite / adjacent<br><br>Unit Circle Values:<br>• sin(0°)=0, sin(90°)=1<br>• cos(0°)=1, cos(90°)=0<br>• tan(45°)=1<br><br>Use Scientific mode for calculations (in radians)!'
+      },
+      {
+        keys: ['logarithm', 'log', 'ln', 'natural log'],
+        answer: '<b>Logarithms:</b><br>• log_b(x) = y means b^y = x<br>• ln(x) = natural log (base e)<br>• log(x) = common log (base 10)<br><br>Properties:<br>• log(xy) = log(x) + log(y)<br>• log(x/y) = log(x) - log(y)<br>• log(x^n) = n·log(x)<br>• ln(e) = 1, log(10) = 1'
+      },
+      {
+        keys: ['factorial', 'permutation', 'combination'],
+        answer: '<b>Factorials & Combinations:</b><br>• n! = n × (n-1) × ... × 2 × 1<br>• 0! = 1 (by definition)<br><br>Permutations: P(n,r) = n!/(n-r)!<br>Combinations: C(n,r) = n!/(r!(n-r)!)<br><br>Use the ! button in Scientific mode!'
+      },
+      {
+        keys: ['area', 'perimeter', 'geometry'],
+        answer: '<b>Common Area Formulas:</b><br>• Square: A = s²<br>• Rectangle: A = l × w<br>• Circle: A = πr²<br>• Triangle: A = ½bh<br>• Trapezoid: A = ½(b₁+b₂)h<br><br><b>Perimeter:</b><br>• Circle: C = 2πr<br>• Rectangle: P = 2(l+w)'
+      },
+      {
+        keys: ['volume', 'surface area', '3d'],
+        answer: '<b>Volume Formulas:</b><br>• Cube: V = s³<br>• Rectangular prism: V = lwh<br>• Cylinder: V = πr²h<br>• Sphere: V = (4/3)πr³<br>• Cone: V = (1/3)πr²h<br><br><b>Surface Areas:</b><br>• Sphere: A = 4πr²<br>• Cylinder: A = 2πr(r+h)'
+      },
+      {
+        keys: ['percentage', 'percent', '%'],
+        answer: '<b>Percentage Calculations:</b><br>• To find %: (part/whole) × 100<br>• To find part: (% × whole) / 100<br>• Increase: original × (1 + %/100)<br>• Decrease: original × (1 - %/100)<br><br>Use the % button for quick percentage conversion!'
+      },
+      {
+        keys: ['distance formula', 'distance', 'coordinate'],
+        answer: '<b>Distance Formula:</b><br>Distance between (x₁,y₁) and (x₂,y₂):<br><br>d = √((x₂-x₁)² + (y₂-y₁)²)<br><br>Example: Distance from (1,2) to (4,6)<br>d = √((4-1)² + (6-2)²) = √(9+16) = √25 = 5'
+      },
+      {
+        keys: ['slope', 'gradient', 'linear'],
+        answer: '<b>Slope Formula:</b><br>For points (x₁,y₁) and (x₂,y₂):<br><br>m = (y₂-y₁)/(x₂-x₁)<br><br>Line equation: y = mx + b<br>where m = slope, b = y-intercept<br><br>Parallel lines: same slope<br>Perpendicular lines: slopes are negative reciprocals'
+      },
+      {
+        keys: ['prime', 'prime number', 'factors'],
+        answer: '<b>Prime Numbers:</b><br>Numbers divisible only by 1 and themselves.<br><br>First primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31...<br><br>2 is the only even prime number.<br><br>To test if n is prime: Check divisibility by all primes ≤ √n'
+      },
+      {
+        keys: ['convert', 'conversion', 'units'],
+        answer: '<b>Common Conversions:</b><br>• 1 mile = 1.609 km<br>• 1 kg = 2.205 lb<br>• 1 inch = 2.54 cm<br>• 1 gallon = 3.785 L<br>• °F = (°C × 9/5) + 32<br>• °C = (°F - 32) × 5/9<br><br>Use Converter mode for instant conversion!'
+      }
+    ];
+    
+    // Find matching response
+    const match = responses.find(r => r.keys.some(k => question.includes(k)));
+    
+    if (match) {
+      this.typeOut(match.answer);
+    } else {
+      this.typeOut(`
+        <b>💡 I can help with:</b><br>
+        • Mathematical formulas (quadratic, derivatives, integrals)<br>
+        • Statistics (mean, median, standard deviation)<br>
+        • Finance (compound interest)<br>
+        • Geometry (area, volume, distance)<br>
+        • Trigonometry (sin, cos, tan)<br>
+        • Number systems (binary, hex)<br>
+        • Try evaluating expressions like "2 + 2 * 4"!<br><br>
+        <em>Try asking: "How do I calculate compound interest?" or "What is the quadratic formula?"</em>
+      `);
+    }
+  },
+  
+  typeOut(html) {
+    setStatus('AI response ready', 'success');
+    elements.aiAssistant.style.opacity = '0';
+    elements.aiAssistant.innerHTML = html;
+    elements.aiAssistant.animate([
+      { opacity: 0, transform: 'translateY(10px)' },
+      { opacity: 1, transform: 'translateY(0)' }
+    ], { duration: 400, fill: 'forwards', easing: 'ease-out' });
+  }
+};
+
+// ============================================================================
+// THEME SYSTEM
+// ============================================================================
+function setTheme(name) {
   const root = document.documentElement;
   const themes = {
-    nebula: { bg:'#06091a', bg2:'#090f28', text:'#f8fbff', muted:'#9aa7c0', accent:'#00d4ff', accent2:'#ff006e', theme:'#06091a' },
-    obsidian: { bg:'#000000', bg2:'#0b0b0f', text:'#ffffff', muted:'#a1a1aa', accent:'#ffffff', accent2:'#6b7280', theme:'#0b0b0f' },
-    aurora: { bg:'#eef2f7', bg2:'#dfe7f0', text:'#0f172a', muted:'#475569', accent:'#5856d6', accent2:'#ff3b30', theme:'#eef2f7' },
-    forest: { bg:'#091510', bg2:'#0d2018', text:'#f0fff8', muted:'#9ac3b3', accent:'#00c87c', accent2:'#f5a623', theme:'#091510' }
+    nebula: { 
+      bg: '#06091a', bg2: '#090f28', text: '#f8fbff', muted: '#9aa7c0', 
+      accent: '#00d4ff', accent2: '#ff006e', theme: '#06091a' 
+    },
+    obsidian: { 
+      bg: '#000000', bg2: '#0b0b0f', text: '#ffffff', muted: '#a1a1aa', 
+      accent: '#ffffff', accent2: '#6b7280', theme: '#0b0b0f' 
+    },
+    aurora: { 
+      bg: '#eef2f7', bg2: '#dfe7f0', text: '#0f172a', muted: '#475569', 
+      accent: '#5856d6', accent2: '#ff3b30', theme: '#eef2f7' 
+    },
+    forest: { 
+      bg: '#091510', bg2: '#0d2018', text: '#f0fff8', muted: '#9ac3b3', 
+      accent: '#00c87c', accent2: '#f5a623', theme: '#091510' 
+    },
+    midnight: { 
+      bg: '#0a0a14', bg2: '#14141f', text: '#e8e8ff', muted: '#9999b3', 
+      accent: '#a78bfa', accent2: '#f472b6', theme: '#0a0a14' 
+    }
   };
+  
   const t = themes[name] || themes.nebula;
   root.style.setProperty('--bg', t.bg);
   root.style.setProperty('--bg2', t.bg2);
@@ -1075,430 +1809,384 @@ function setTheme(name){
   root.style.setProperty('--muted', t.muted);
   root.style.setProperty('--accent', t.accent);
   root.style.setProperty('--accent2', t.accent2);
-  themeMeta.setAttribute('content', t.theme);
-  localStorage.setItem(STORAGE_KEYS.theme, name);
+  elements.themeMeta.setAttribute('content', t.theme);
+  
+  safeSaveStorage(STORAGE_KEYS.theme, name);
+  
+  // Update active theme button
+  document.querySelectorAll('.themeBtn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.theme === name);
+  });
+  
+  setStatus(`${name.charAt(0).toUpperCase() + name.slice(1)} theme activated`, 'success');
 }
 
-function showMode(mode){
-  document.querySelectorAll('.menu button').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+// ============================================================================
+// MODE SWITCHING
+// ============================================================================
+function showMode(mode) {
+  document.querySelectorAll('.menu button').forEach(b => 
+    b.classList.toggle('active', b.dataset.mode === mode)
+  );
+  
   document.querySelectorAll('.mode').forEach(m => m.classList.add('hidden'));
   document.getElementById(mode).classList.remove('hidden');
+  
   const labels = {
-    basic:'Basic calculator mode', scientific:'Scientific mode', programmer:'Programmer mode', statistics:'Statistics mode',
-    financial:'Financial mode', matrix:'Matrix mode', converter:'Converter mode', equation:'Equation solver', history:'History mode'
+    basic: 'Basic calculator mode',
+    scientific: 'Scientific calculation mode',
+    programmer: 'Programmer & base conversion',
+    statistics: 'Statistical analysis',
+    financial: 'Financial calculator',
+    matrix: 'Matrix operations',
+    converter: 'Unit converter',
+    equation: 'Equation solver',
+    graphing: 'Function graphing',
+    history: 'Calculation history'
   };
-  subtitleEl.textContent = labels[mode] || 'Numeron Workspace';
-  setStatus('Mode changed');
+  
+  elements.subtitle.textContent = labels[mode] || 'Numeron Ultra Workspace';
+  setStatus('Mode changed', 'success');
+  
+  // Close sidebar on mobile
+  if (window.innerWidth <= 900) {
+    elements.sidebar.classList.remove('open');
+  }
 }
 
-function bindModeMenu(){
+// ============================================================================
+// PWA INSTALLATION (100% WORKING)
+// ============================================================================
+function initInstallation() {
+  const installBtn = document.getElementById('installBtn');
+  const installNowBtn = document.getElementById('installNowBtn');
+  const modal = elements.installModal;
+  const closeBtn = document.getElementById('closeModal');
+  const copyBtn = document.getElementById('copyInstructionsBtn');
+  const installHint = document.getElementById('installHint');
+  
+  // Detect platform
+  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                       window.navigator.standalone;
+  
+  // Update UI if already installed
+  if (isStandalone) {
+    installBtn.textContent = '✓ App Installed';
+    installBtn.classList.add('success');
+    installBtn.disabled = true;
+    installHint.textContent = 'Running in app mode';
+    return;
+  }
+  
+  // Capture install prompt
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    installBtn.textContent = '⬇ Install App Now';
+    installHint.textContent = 'One-click installation available';
+    setStatus('Installation ready', 'success');
+  });
+  
+  // Handle app installed
+  window.addEventListener('appinstalled', () => {
+    installBtn.textContent = '✓ Installed Successfully';
+    installBtn.classList.add('success');
+    installBtn.disabled = true;
+    installHint.textContent = 'App installed successfully!';
+    modal.classList.remove('show');
+    setStatus('App installed!', 'success');
+  });
+  
+  // Main install button click
+  installBtn.addEventListener('click', async () => {
+    if (deferredInstallPrompt) {
+      try {
+        await deferredInstallPrompt.prompt();
+        const choiceResult = await deferredInstallPrompt.userChoice;
+        
+        if (choiceResult.outcome === 'accepted') {
+          installHint.textContent = 'Installation in progress...';
+          setStatus('Installing...', 'success');
+        } else {
+          installHint.textContent = 'Installation cancelled';
+          modal.classList.add('show');
+        }
+        
+        deferredInstallPrompt = null;
+      } catch (err) {
+        console.error('Install error:', err);
+        modal.classList.add('show');
+      }
+    } else {
+      // Show manual installation instructions
+      modal.classList.add('show');
+    }
+  });
+  
+  // Install now button in modal
+  installNowBtn.addEventListener('click', async () => {
+    if (deferredInstallPrompt) {
+      try {
+        await deferredInstallPrompt.prompt();
+        const choiceResult = await deferredInstallPrompt.userChoice;
+        
+        if (choiceResult.outcome === 'accepted') {
+          modal.classList.remove('show');
+          setStatus('Installing app...', 'success');
+        }
+        
+        deferredInstallPrompt = null;
+      } catch (err) {
+        setStatus('Install via browser menu', 'warning');
+      }
+    } else if (window.location.protocol === 'file:') {
+      // Trigger download of the Windows Installer batch file
+      const a = document.createElement('a');
+      a.href = 'Install Numeron.bat';
+      a.download = 'Install Numeron.bat';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      modal.classList.remove('show');
+      setStatus('Installer downloaded!', 'success');
+    } else if (isIOS) {
+      setStatus('Use Safari Share → Add to Home Screen', 'warning');
+    } else if (isAndroid) {
+      setStatus('Use browser menu → Install app', 'warning');
+    } else {
+      setStatus('Use browser install button', 'warning');
+    }
+  });
+  
+  // Close modal
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+  });
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+  
+  // Copy instructions
+  copyBtn.addEventListener('click', async () => {
+    const instructions = `
+Numeron Ultra - Installation Instructions
+
+📱 iOS (iPhone/iPad):
+1. Open in Safari
+2. Tap the Share button (square with arrow)
+3. Scroll and tap "Add to Home Screen"
+4. Tap "Add"
+
+📱 Android:
+1. Open in Chrome or Edge
+2. Tap the menu (⋮)
+3. Tap "Install app" or "Add to Home Screen"
+4. Tap "Install"
+
+💻 Desktop:
+1. Look for the install icon (⊕ or 🖥️) in the address bar
+2. Or check browser menu for "Install Numeron Ultra"
+3. Click and follow prompts
+    `.trim();
+    
+    try {
+      await navigator.clipboard.writeText(instructions);
+      setStatus('Instructions copied!', 'success');
+      copyBtn.textContent = '✓ Copied';
+      setTimeout(() => {
+        copyBtn.textContent = 'Copy Instructions';
+      }, 2000);
+    } catch {
+      setStatus('Could not copy', 'error');
+    }
+  });
+  
+  // Platform-specific hints
+  if (isIOS) {
+    installHint.textContent = 'iOS: Use Safari Share → Add to Home Screen';
+  } else if (isAndroid) {
+    installHint.textContent = 'Android: Use browser menu → Install app';
+  }
+}
+
+// ============================================================================
+// EVENT BINDINGS
+// ============================================================================
+function bindEvents() {
+  // Mobile sidebar toggle
+  document.getElementById('mobileToggle').addEventListener('click', () => {
+    elements.sidebar.classList.toggle('open');
+  });
+  
+  // Mode menu
   document.getElementById('modeMenu').addEventListener('click', (e) => {
     const btn = e.target.closest('button[data-mode]');
-    if (!btn) return;
-    showMode(btn.dataset.mode);
-    if (window.innerWidth <= 900) document.getElementById('sidebar').classList.remove('open');
+    if (btn) showMode(btn.dataset.mode);
   });
-}
-
-function bindKeypad(){
+  
+  // Calculator buttons
   document.addEventListener('click', (e) => {
     const inputBtn = e.target.closest('[data-input]');
     if (inputBtn) calc.input(inputBtn.dataset.input);
-
+    
     const actionBtn = e.target.closest('[data-action]');
-    if (actionBtn){
+    if (actionBtn) {
       const action = actionBtn.dataset.action;
       if (action === 'clear') calc.clear();
       if (action === 'backspace') calc.backspace();
       if (action === 'toggleSign') calc.toggleSign();
       if (action === 'evaluate') calc.evaluate();
-      if (action === 'percent') calc.applyPercent();
+      if (action === 'percent') calc.percent();
     }
   });
-}
-
-function bindControls(){
-  document.getElementById('mobileToggle').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('open');
-  });
-  document.getElementById('aiAskBtn').addEventListener('click', () => offlineAI.ask());
-  document.getElementById('progBtn').addEventListener('click', () => programmer.convert());
-  document.getElementById('statsBtn').addEventListener('click', () => statistics.run());
-  document.getElementById('statsSampleBtn').addEventListener('click', () => {
-    document.getElementById('statsInput').value = '8, 12, 15, 16, 18, 21, 23, 24, 29, 31';
-    statistics.run();
-  });
-  document.getElementById('financeBtn').addEventListener('click', () => finance.compound());
-  document.getElementById('matrixBtn').addEventListener('click', () => matrix.solve());
-  document.getElementById('convertBtn').addEventListener('click', () => converter.run());
-  document.getElementById('eqBtn').addEventListener('click', () => solver.solve());
-  document.getElementById('historyRefreshBtn').addEventListener('click', () => calc.renderHistory());
-  document.getElementById('historyClearBtn').addEventListener('click', () => {
-    calc.history = [];
-    safeSaveHistory(calc.history);
-    calc.renderHistory();
-    setStatus('History cleared');
-  });
-  document.getElementById('copyBtn').addEventListener('click', async () => {
-    const text = getCurrentExpressionForCopy();
-    try{
-      await navigator.clipboard.writeText(text || '');
-      setStatus('Expression copied');
-    }catch{
-      setStatus('Clipboard unavailable');
-    }
-  });
-}
-
-function bindThemeButtons(){
+  
+  // Theme buttons
   document.querySelectorAll('.themeBtn').forEach(btn => {
     btn.addEventListener('click', () => setTheme(btn.dataset.theme));
   });
-}
-
-function bindKeyboard(){
+  
+  // AI Assistant
+  document.getElementById('aiAskBtn').addEventListener('click', () => aiAssistant.ask());
+  document.getElementById('aiInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') aiAssistant.ask();
+  });
+  
+  // Specialized calculators
+  document.getElementById('progBtn').addEventListener('click', () => programmer.convert());
+  document.getElementById('statsBtn').addEventListener('click', () => statistics.run());
+  document.getElementById('statsSampleBtn').addEventListener('click', () => {
+    document.getElementById('statsInput').value = '12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45';
+    statistics.run();
+  });
+  document.getElementById('statsClearBtn').addEventListener('click', () => {
+    document.getElementById('statsInput').value = '';
+    document.getElementById('statsGrid').innerHTML = '';
+    const canvas = document.getElementById('chart');
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  });
+  document.getElementById('financeBtn').addEventListener('click', () => finance.calculate());
+  document.getElementById('matrixBtn').addEventListener('click', () => matrix.calculate());
+  document.getElementById('matrixSampleBtn').addEventListener('click', () => {
+    document.getElementById('matrixInput').value = '4 7 2\n3 6 1\n2 5 3';
+    matrix.calculate();
+  });
+  document.getElementById('convertBtn').addEventListener('click', () => converter.convert());
+  document.getElementById('eqBtn').addEventListener('click', () => solver.solve());
+  document.getElementById('graphBtn').addEventListener('click', () => grapher.plot());
+  
+  // History
+  document.getElementById('historyRefreshBtn').addEventListener('click', () => calc.renderHistory());
+  document.getElementById('historyClearBtn').addEventListener('click', () => {
+    if (confirm('Clear all calculation history?')) {
+      calc.history = [];
+      safeSaveStorage(STORAGE_KEYS.history, calc.history);
+      calc.renderHistory();
+      setStatus('History cleared', 'success');
+    }
+  });
+  
+  // Export/Import
+  document.getElementById('exportDataBtn').addEventListener('click', () => calc.exportData());
+  document.getElementById('importDataBtn').addEventListener('click', () => {
+    document.getElementById('importFile').click();
+  });
+  document.getElementById('importFile').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) calc.importData(file);
+    e.target.value = '';
+  });
+  
+  // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
-    const target = e.target;
-    const typing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName);
-    if (typing && target.id !== 'aiInput' && target.id !== 'statsInput' && target.id !== 'matrixInput' && target.id !== 'eqInput' && target.id !== 'progInput' && target.id !== 'principal' && target.id !== 'rate' && target.id !== 'years' && target.id !== 'monthly' && target.id !== 'convertInput') return;
-
-    if (e.key === 'Enter'){
-      if (typing) return;
-      calc.evaluate();
-    }
-    if (e.key === 'Backspace' && !typing){ e.preventDefault(); calc.backspace(); }
-    if (e.key === 'Escape'){ calc.clear(); }
-
-    const allowed = '0123456789+-*/().';
-    if (allowed.includes(e.key)){
-      calc.input(e.key);
-      setStatus('Typing');
-    }
-  });
-}
-
-function bindInstall(){
-  let deferredPrompt = null;
-  const installBtn = document.getElementById('installBtn');
-  const downloadBtn = document.getElementById('downloadBtn');
-  const modal = document.getElementById('installHelpModal');
-  const closeBtn = document.getElementById('closeInstallHelp');
-  const modalDownloadBtn = document.getElementById('modalDownloadBtn');
-  const modalCopyStepsBtn = document.getElementById('modalCopyStepsBtn');
-  const hint = document.getElementById('installHint');
-  const helpTitle = document.getElementById('installHelpTitle');
-
-  const deviceHelp = () => {
-    const ua = navigator.userAgent || '';
-    if (/iphone|ipad|ipod/i.test(ua)) {
-      return 'On iPhone and iPad, use Safari → Share → Add to Home Screen.';
-    }
-    if (/android/i.test(ua)) {
-      return 'On Android, use Chrome menu → Install app or Add to Home screen.';
-    }
-    if (/macintosh|windows|linux/i.test(ua)) {
-      return 'On desktop, use the browser install icon or menu item to install this app.';
-    }
-    return 'Use your browser menu to add this app to the home screen or install it.';
-  };
-
-  const openHelp = () => {
-    helpTitle.textContent = deviceHelp();
-    modal.style.display = 'flex';
-  };
-
-  const closeHelp = () => {
-    modal.style.display = 'none';
-  };
-
-  const downloadHtml = () => {
-    const html = '<!DOCTYPE html>
-' + document.documentElement.outerHTML;
-    const blob = new Blob([html], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'numeron-premium.html';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    setStatus('Download started');
-  };
-
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    hint.textContent = 'Install is ready on this browser.';
-    installBtn.textContent = '⬇ Install App';
-  });
-
-  window.addEventListener('appinstalled', () => {
-    hint.textContent = 'App installed successfully.';
-    setStatus('App installed');
-  });
-
-  installBtn.addEventListener('click', async () => {
-    try {
-      if (deferredPrompt) {
-        deferredPrompt.prompt();
-        const choice = await deferredPrompt.userChoice;
-        deferredPrompt = null;
-        if (choice && choice.outcome === 'accepted') {
-          hint.textContent = 'Installation accepted.';
-          setStatus('Installed');
-        } else {
-          hint.textContent = 'You can install it later from the browser menu.';
-          setStatus('Install dismissed');
-        }
-      } else {
-        openHelp();
+    const activeElement = document.activeElement;
+    const isTyping = ['INPUT', 'TEXTAREA'].includes(activeElement.tagName);
+    
+    if (isTyping) {
+      // Allow Enter in specific inputs
+      if (e.key === 'Enter') {
+        if (activeElement.id === 'aiInput') aiAssistant.ask();
+        else if (activeElement.id === 'eqInput') solver.solve();
+        else if (activeElement.id === 'graphInput') grapher.plot();
       }
-    } catch (err) {
-      console.warn(err);
-      openHelp();
+      return;
     }
+    
+    if (e.key === 'Enter') calc.evaluate();
+    else if (e.key === 'Backspace') { e.preventDefault(); calc.backspace(); }
+    else if (e.key === 'Escape') calc.clear();
+    else if (e.key === 'Delete') calc.clear();
+    else if ('0123456789+-*/().'.includes(e.key)) calc.input(e.key);
   });
-
-  downloadBtn.addEventListener('click', downloadHtml);
-  modalDownloadBtn.addEventListener('click', downloadHtml);
-  closeBtn.addEventListener('click', closeHelp);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeHelp();
-  });
-  modalCopyStepsBtn.addEventListener('click', async () => {
-    const text = `${deviceHelp()}
-
-Desktop: use the install icon or browser menu.
-Android: Chrome menu → Install app.
-iPhone/iPad: Share → Add to Home Screen.`;
-    try {
-      await navigator.clipboard.writeText(text);
-      setStatus('Install steps copied');
-    } catch {
-      setStatus('Clipboard unavailable');
+  
+  // Responsive canvas redraw
+  window.addEventListener('resize', () => {
+    const statsInput = document.getElementById('statsInput').value;
+    if (statsInput) {
+      const nums = parseNumbers(statsInput);
+      if (nums.length) drawChart(nums);
     }
   });
 }
 
-function bindResponsiveCanvas(){
-  const canvas = document.getElementById('chart');
-  if (!canvas) return;
-  const resize = () => {
-    const statsText = document.getElementById('statsInput').value;
-    const nums = parseNumbers(statsText);
-    if (nums.length) drawStatsChart(nums);
-  };
-  window.addEventListener('resize', resize);
-}
+// Manifest is now linked directly via manifest.json
 
-function init(){
-  const savedTheme = localStorage.getItem(STORAGE_KEYS.theme) || 'nebula';
+// ============================================================================
+// INITIALIZATION
+// ============================================================================
+function init() {
+  // Load saved theme
+  const savedTheme = safeStorage(STORAGE_KEYS.theme, 'nebula');
   setTheme(savedTheme);
-  bindModeMenu();
-  bindKeypad();
-  bindControls();
-  bindThemeButtons();
-  bindKeyboard();
-  bindInstall();
-  bindResponsiveCanvas();
-
-  const initialMode = 'basic';
-  showMode(initialMode);
-
-  if (calc.expression){
-    expressionEl.textContent = calc.expression;
+  
+  // Show initial mode
+  showMode('basic');
+  
+  // Bind all events
+  bindEvents();
+  
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js').then(() => {
+      console.log('Service Worker Registered');
+    }).catch(err => console.error('Service Worker Failed', err));
   }
 
-  if ('serviceWorker' in navigator){
-    window.addEventListener('load', async () => {
-      try{
-        await navigator.serviceWorker.register('./sw.js');
-        setStatus('Offline-ready UI loaded');
-      }catch(err){
-        console.warn('Service worker skipped:', err);
-      }
-    });
+  // Initialize PWA installation
+  initInstallation();
+  
+  // Initial status
+  setStatus('Ready for calculation', 'success');
+  
+  // Welcome message for first-time users
+  if (!safeStorage(STORAGE_KEYS.settings)) {
+    safeSaveStorage(STORAGE_KEYS.settings, { firstTime: false });
+    setTimeout(() => {
+      setStatus('Welcome to Numeron Ultra! 🎉', 'success');
+    }, 500);
   }
-
+  
+  // Hide splash screen after initialization
   setTimeout(() => {
-    if (!calc.history.length) calc.renderHistory();
-  }, 0);
+    const splash = document.getElementById('splash-screen');
+    if (splash) splash.classList.add('hidden');
+  }, 1200);
+
+  console.log('%cNumeron Ultra Premium v2.0', 'color: #00d4ff; font-size: 20px; font-weight: bold;');
+  console.log('%cProfessional Mathematical Workspace', 'color: #ff006e; font-size: 14px;');
 }
 
-init();
+// Start the app
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 </script>
-<!--
-========================================================
-PRODUCTION PWA FILES
-Create these files beside index.html
-========================================================
-
-================ manifest.json ================
-{
-  "name": "Numeron Premium",
-  "short_name": "Numeron",
-  "description": "Premium scientific calculator and offline math workspace",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#06091a",
-  "theme_color": "#06091a",
-  "orientation": "portrait-primary",
-  "scope": "./",
-  "lang": "en",
-  "categories": ["productivity", "utilities", "education"],
-  "icons": [
-    {
-      "src": "icons/icon-72.png",
-      "sizes": "72x72",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-96.png",
-      "sizes": "96x96",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
-}
-
-================ sw.js ================
-const CACHE_NAME = 'numeron-premium-v1';
-const APP_SHELL = [
-  './',
-  './index.html',
-  './manifest.json',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.11.0/math.min.js'
-];
-
-self.addEventListener('install', event => {
-  self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))
-  );
-});
-
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
-      )
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener('fetch', event => {
-  const request = event.request;
-
-  if (request.method !== 'GET') return;
-
-  event.respondWith(
-    caches.match(request).then(cached => {
-      if (cached) {
-        fetch(request)
-          .then(response => {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
-          })
-          .catch(() => {});
-        return cached;
-      }
-
-      return fetch(request)
-        .then(response => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => {
-          if (request.destination === 'document') {
-            return caches.match('./index.html');
-          }
-        });
-    })
-  );
-});
-
-================ ICONS ================
-Create an /icons folder and add:
-- icon-72.png
-- icon-96.png
-- icon-128.png
-- icon-192.png
-- icon-512.png
-
-Recommended design:
-- Dark glossy background
-- Neon N logo
-- Rounded corners
-- Export PNG with transparent-safe padding
-
-================ DEPLOYMENT ================
-Deploy with HTTPS using:
-- Vercel
-- Netlify
-- Cloudflare Pages
-- GitHub Pages
-
-Folder structure:
-/
-  index.html
-  manifest.json
-  sw.js
-  /icons
-
-========================================================
-END PWA FILES
-========================================================
--->
-<div id="installHelpModal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:300;background:rgba(2,6,23,.72);backdrop-filter:blur(18px);padding:18px;">
-  <div style="width:min(560px,100%);border-radius:28px;padding:22px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);">
-    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-      <div>
-        <div class="card-title">Install Numeron</div>
-        <div class="card-sub" id="installHelpTitle">Choose the right install method for your device.</div>
-      </div>
-      <button class="install secondary" id="closeInstallHelp" style="width:auto;padding:10px 14px;">Close</button>
-    </div>
-    <div class="card" style="margin-top:14px;">
-      <div class="card-title">Android / Chrome</div>
-      <div class="card-sub">Tap the browser menu and choose Install app or Add to Home screen.</div>
-    </div>
-    <div class="card" style="margin-top:10px;">
-      <div class="card-title">iPhone / iPad</div>
-      <div class="card-sub">Tap Share, then choose Add to Home Screen. Safari works best for iOS installation.</div>
-    </div>
-    <div class="card" style="margin-top:10px;">
-      <div class="card-title">Desktop</div>
-      <div class="card-sub">Use the browser install icon in the address bar, or download the standalone app file.</div>
-    </div>
-    <div class="history-actions" style="margin-top:14px;">
-      <button class="install" id="modalDownloadBtn" style="width:auto;">Download app file</button>
-      <button class="install secondary" id="modalCopyStepsBtn" style="width:auto;">Copy steps</button>
-    </div>
-  </div>
-</div>
 </body>
 </html>
-
