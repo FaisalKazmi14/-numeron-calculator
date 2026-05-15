@@ -1,11 +1,12 @@
 {
-  "name": "Numeron | Pro Calculator",
-  "short_name": "Numeron",
-  "description": "Numeron: The last calculator you'll ever need - by FaisalKazmi",
+  "name": "NUMERON ULTRA",
+  "short_name": "NUMERON ULTRA",
+  "description": "The Last Calculator — scientific, financial, statistics, matrices, graphing, and AI-assisted math in one professional offline-capable suite.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#050505",
-  "theme_color": "#00f2ff",
+  "orientation": "any",
+  "background_color": "#eef2f7",
+  "theme_color": "#5856d6",
   "icons": [
     {
       "src": "logo.svg",
@@ -13,5 +14,6 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
-  ]
+  ],
+  "categories": ["education", "finance", "utilities"]
 }
